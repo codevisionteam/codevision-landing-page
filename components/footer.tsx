@@ -38,9 +38,7 @@ export function Footer() {
             <div className="space-y-4">
               <Logo size="sm" />
               <p className="text-sm text-muted-foreground max-w-xs">
-                {locale === "id"
-                  ? "Software house profesional Indonesia yang mengkhususkan diri dalam solusi digital inovatif."
-                  : "Professional Indonesian software house specializing in innovative digital solutions."}
+                {t("footer.description")}
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
@@ -60,7 +58,7 @@ export function Footer() {
 
             {/* Quick Links */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-foreground">{locale === "id" ? "Tautan Cepat" : "Quick Links"}</h3>
+              <h3 className="font-semibold text-foreground">{t("footer.quickLinks")}</h3>
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.key}>
@@ -77,7 +75,7 @@ export function Footer() {
 
             {/* Services */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-foreground">{locale === "id" ? "Layanan" : "Services"}</h3>
+              <h3 className="font-semibold text-foreground">{t("footer.services")}</h3>
               <ul className="space-y-2">
                 {services.map((service) => (
                   <li key={service.key}>
@@ -94,11 +92,11 @@ export function Footer() {
 
             {/* Contact Info */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-foreground">{locale === "id" ? "Kontak" : "Contact"}</h3>
+              <h3 className="font-semibold text-foreground">{t("footer.contact")}</h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 flex-shrink-0" />
-                  <span>{locale === "id" ? "Kalimantan Tengah" : "Central Kalimantan"}</span>
+                  <span>{t("footer.location")}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <Phone className="h-4 w-4 flex-shrink-0" />
@@ -115,14 +113,14 @@ export function Footer() {
           <div className="mt-8 pt-8 border-t border-border">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-sm text-muted-foreground">
-                © 2024 Codevision. {locale === "id" ? "Semua hak dilindungi." : "All rights reserved."}
+                © 2024 Codevision. {t("footer.copyright")}
               </p>
               <div className="flex space-x-6">
                 <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  {locale === "id" ? "Kebijakan Privasi" : "Privacy Policy"}
+                  {t("footer.privacyPolicy")}
                 </Link>
                 <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  {locale === "id" ? "Syarat & Ketentuan" : "Terms & Conditions"}
+                  {t("footer.termsConditions")}
                 </Link>
               </div>
             </div>

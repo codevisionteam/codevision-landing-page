@@ -1,0 +1,293 @@
+{
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "career": "Career", 
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "viewMore": "View More",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "backToHome": "Back to Home",
+    "comingSoon": "Coming Soon"
+  },
+  "hero": {
+    "badge": "Leading Digital Solutions",
+    "title": "Realize Your Digital Vision with Codevision",
+    "subtitle": "We are a professional software house specializing in web application development, mobile apps, and innovative SaaS solutions to help your business grow in the digital era.",
+    "cta": {
+      "primary": "Start Your Project",
+      "secondary": "View Portfolio"
+    }
+  },
+  "services": {
+    "badge": "Our Services",
+    "title": "Best Technology Solutions",
+    "subtitle": "We provide various software development services tailored to your business needs",
+    "items": {
+      "webDev": {
+        "title": "Web Development",
+        "description": "Modern and responsive web applications using cutting-edge technologies like React, Next.js, and Node.js"
+      },
+      "mobileDev": {
+        "title": "Mobile Applications",
+        "description": "Native and cross-platform mobile apps for iOS and Android using React Native and Flutter"
+      },
+      "saas": {
+        "title": "SaaS Solutions",
+        "description": "Scalable and secure Software as a Service platforms for various business needs"
+      },
+      "b2b": {
+        "title": "B2B Applications",
+        "description": "Enterprise systems and business applications to improve operational efficiency"
+      }
+    }
+  },
+  "portfolio": {
+    "badge": "Featured Portfolio",
+    "title": "Our Best Work",
+    "subtitle": "View some of our featured projects that we have worked on for various clients from different industries",
+    "viewProject": "View Project",
+    "techStack": "Tech Stack",
+    "projectDetails": "Project Details",
+    "clientTestimonial": "Client Testimonial",
+    "categories": {
+      "all": "All",
+      "web": "Web App",
+      "mobile": "Mobile App",
+      "saas": "SaaS", 
+      "b2b": "B2B"
+    }
+  },
+  "testimonials": {
+    "badge": "Client Testimonials",
+    "title": "What Our Clients Say",
+    "subtitle": "Client satisfaction is our top priority. Here are testimonials from various clients who have worked with Codevision"
+  },
+  "career": {
+    "badge": "Join Our Team",
+    "title": "Career at Codevision",
+    "subtitle": "Join our professional team and develop your career in the dynamic and innovative technology industry.",
+    "valueProps": {
+      "innovation": {
+        "title": "Continuous Innovation",
+        "description": "Working with cutting-edge technology"
+      },
+      "team": {
+        "title": "Solid Team",
+        "description": "Collaborate with top professionals"
+      },
+      "growth": {
+        "title": "Career Development",
+        "description": "Unlimited growth opportunities"
+      }
+    },
+    "positions": {
+      "title": "Available Positions",
+      "subtitle": "Find positions that match your skills and passion",
+      "applyNow": "Apply Now",
+      "viewDetails": "View Details",
+      "filters": {
+        "level": "Level",
+        "type": "Type",
+        "function": "Function",
+        "clearAll": "Clear All"
+      },
+      "levels": {
+        "all": "All Levels",
+        "intern": "Internship",
+        "junior": "Junior",
+        "mid": "Mid Level",
+        "senior": "Senior"
+      },
+      "types": {
+        "all": "All Types",
+        "fullTime": "Full Time", 
+        "partTime": "Part Time",
+        "internship": "Internship",
+        "contract": "Contract"
+      },
+      "functions": {
+        "all": "All Functions",
+        "engineering": "Engineering",
+        "design": "Design",
+        "product": "Product",
+        "marketing": "Marketing",
+        "content": "Content"
+      }
+    },
+    "benefits": {
+      "title": "Benefits & Facilities",
+      "subtitle": "Enjoy various attractive benefits we provide for our best team",
+      "items": {
+        "healthInsurance": {
+          "title": "Health Insurance",
+          "description": "Comprehensive health insurance for employees and family"
+        },
+        "flexibleWorking": {
+          "title": "Flexible Working",
+          "description": "Work from home and flexible working hours"
+        },
+        "teamBuilding": {
+          "title": "Team Building",
+          "description": "Regular team building activities and company trips"
+        },
+        "learningBudget": {
+          "title": "Learning Budget",
+          "description": "Special budget for training and certification"
+        },
+        "performanceBonus": {
+          "title": "Performance Bonus",
+          "description": "Performance bonuses and attractive incentives"
+        },
+        "freeMeals": {
+          "title": "Free Meals & Snacks",
+          "description": "Free lunch and unlimited snacks"
+        },
+        "recreationRoom": {
+          "title": "Recreation Room",
+          "description": "Recreation room with games and entertainment"
+        }
+      }
+    },
+    "application": {
+      "title": "Apply for Position",
+      "subtitle": "Fill out the form below to apply for your desired position",
+      "form": {
+        "fullName": "Full Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "experience": "Work Experience",
+        "portfolio": "Portfolio Link",
+        "coverLetter": "Cover Letter",
+        "consent": "I agree to the use of personal data for recruitment process",
+        "submit": "Submit Application",
+        "submitting": "Submitting..."
+      },
+      "success": {
+        "title": "Application Submitted Successfully!",
+        "message": "Thank you for applying. Our HR team will contact you within 1-2 business days."
+      }
+    }
+  },
+  "faq": {
+    "badge": "Help Center",
+    "title": "FAQ",
+    "subtitle": "Find answers to common questions about our services, processes, and policies. Everything you need to know is here.",
+    "categories": {
+      "services": "Services",
+      "pricing": "Pricing",
+      "security": "Security", 
+      "process": "Process"
+    },
+    "categoriesFull": {
+      "services": "Services & Products",
+      "pricing": "Pricing & Payment",
+      "security": "Security & Privacy",
+      "process": "Process & Timeline"
+    },
+    "cta": {
+      "title": "Still Have Questions?",
+      "subtitle": "Our expert team is ready to help you with specific questions about your project or technical needs.",
+      "contact": "Contact Us",
+      "consultation": "Free Consultation"
+    }
+  },
+  "contact": {
+    "badge": "Contact Us",
+    "title": "Let's Discuss",
+    "subtitle": "Share your ideas and vision with us. Codevision's expert team is ready to help realize the right technology solutions for your business.",
+    "valueProps": {
+      "quickResponse": {
+        "title": "Quick Response",
+        "subtitle": "during business hours"
+      },
+      "freeConsultation": {
+        "title": "Free Consultation",
+        "subtitle": "30 minutes"
+      },
+      "professionalService": {
+        "title": "Professional Service",
+        "subtitle": "Experienced team"
+      }
+    },
+    "quickActions": {
+      "title": "Fastest Ways to Reach Us",
+      "subtitle": "Choose the most convenient way for you",
+      "whatsapp": {
+        "title": "WhatsApp Chat",
+        "description": "Quick response during business hours",
+        "action": "Start Chat"
+      },
+      "meeting": {
+        "title": "Schedule Meeting",
+        "description": "Free 30-minute consultation",
+        "action": "Book Now"
+      }
+    },
+    "form": {
+      "title": "Send Message",
+      "subtitle": "Tell us about your project or needs, and we'll respond with the best solutions.",
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "company": "Company Name",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "submitting": "Sending..."
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": {
+        "title": "Office Address",
+        "value": "Jl Temanggung Silam RT 002/RW 004 NO 29\nPuruk Cahu, Kec. Murung, Kabupaten Murung Raya\nCentral Kalimantan 73911"
+      },
+      "phone": {
+        "title": "Phone",
+        "value": "+6285773333569"
+      },
+      "email": {
+        "title": "Email", 
+        "value": "hello@codevision.id"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "value": "Monday - Friday: 09:00 - 18:00\nSunday - Sunday: Closed"
+      }
+    },
+    "map": {
+      "title": "Office Location",
+      "subtitle": "Central Kalimantan"
+    },
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "subtitle": "Free consultation to discuss ideas, timeline estimates, and the right technology for your project.",
+      "schedule": "Schedule Consultation",
+      "chat": "Chat Now"
+    }
+  },
+  "footer": {
+    "description": "Professional Indonesian software house specializing in innovative digital solutions.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "location": "Central Kalimantan",
+    "copyright": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms & Conditions"
+  },
+  "servicesList": {
+    "web": "Web Development",
+    "mobile": "Mobile Applications",
+    "saas": "SaaS Solutions",
+    "b2b": "B2B Applications"
+  }
+}

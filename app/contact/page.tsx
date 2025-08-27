@@ -77,7 +77,7 @@ const quickActions = [
 ]
 
 export default function ContactPage() {
-  const { locale } = useI18n()
+  const { locale, t } = useI18n()
 
   const getColorClasses = (color: string) => {
     const colors = {
@@ -118,7 +118,7 @@ export default function ContactPage() {
               <div className="mb-8 flex justify-center">
                 <Badge className="px-6 py-3 text-base font-bold bg-primary/90 hover:bg-primary text-primary-foreground border-0 rounded-full shadow-lg">
                   <Send className="mr-2 h-4 w-4" />
-                  {locale === "id" ? "Hubungi Kami" : "Contact Us"}
+                  {t("contact.badge")}
                 </Badge>
               </div>
             </Reveal>
@@ -130,16 +130,14 @@ export default function ContactPage() {
                   animated
                   className="leading-tight"
                 >
-                  {locale === "id" ? "Mari Berdiskusi" : "Let's Discuss"}
+                  {t("contact.title")}
                 </GradientText>
               </h1>
             </Reveal>
 
             <Reveal delay={0.6}>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto lg:text-2xl font-medium">
-                {locale === "id"
-                  ? "Ceritakan ide dan visi Anda kepada kami. Tim ahli Codevision siap membantu mewujudkan solusi teknologi yang tepat untuk bisnis Anda."
-                  : "Share your ideas and vision with us. Codevision's expert team is ready to help realize the right technology solutions for your business."}
+                {t("contact.subtitle")}
               </p>
             </Reveal>
 
@@ -149,10 +147,10 @@ export default function ContactPage() {
                   <div className="flex flex-col items-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 hover:scale-105 transition-transform duration-300">
                     <MessageCircle className="h-8 w-8 text-green-500 mb-3" />
                     <span className="text-sm font-semibold text-green-800 dark:text-green-200">
-                      {locale === "id" ? "Respon Cepat" : "Quick Response"}
+                      {t("contact.valueProps.quickResponse.title")}
                     </span>
                     <span className="text-xs text-green-600 dark:text-green-400">
-                      {locale === "id" ? "< 5 menit" : "< 5 minutes"}
+                      {t("contact.valueProps.quickResponse.subtitle")}
                     </span>
                   </div>
                 </TiltCard>
@@ -161,10 +159,10 @@ export default function ContactPage() {
                   <div className="flex flex-col items-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 hover:scale-105 transition-transform duration-300">
                     <Calendar className="h-8 w-8 text-blue-500 mb-3" />
                     <span className="text-sm font-semibold text-blue-800 dark:text-blue-200">
-                      {locale === "id" ? "Konsultasi Gratis" : "Free Consultation"}
+                      {t("contact.valueProps.freeConsultation.title")}
                     </span>
                     <span className="text-xs text-blue-600 dark:text-blue-400">
-                      {locale === "id" ? "30 menit" : "30 minutes"}
+                      {t("contact.valueProps.freeConsultation.subtitle")}
                     </span>
                   </div>
                 </TiltCard>
@@ -197,11 +195,11 @@ export default function ContactPage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 <GradientText colors={['from-primary', 'to-secondary']}>
-                  {locale === "id" ? "Cara Tercepat Menghubungi Kami" : "Fastest Ways to Reach Us"}
+                  {t("contact.quickActions.title")}
                 </GradientText>
               </h2>
               <p className="text-lg text-muted-foreground">
-                {locale === "id" ? "Pilih cara yang paling nyaman untuk Anda" : "Choose the most convenient way for you"}
+                {t("contact.quickActions.subtitle")}
               </p>
             </div>
           </Reveal>
@@ -216,8 +214,12 @@ export default function ContactPage() {
                         <div className={`inline-flex p-4 rounded-full mb-4 ${action.color} transition-colors`}>
                           <action.icon className="h-8 w-8 text-white" />
                         </div>
-                        <h3 className="text-lg font-semibold text-foreground mb-2">{action.title[locale]}</h3>
-                        <p className="text-sm text-muted-foreground mb-6">{action.description[locale]}</p>
+                        <h3 className="text-lg font-semibold text-foreground mb-2">
+                          {action.title[locale]}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-6">
+                          {action.description[locale]}
+                        </p>
                         <Magnetic strength={0.1}>
                           <Button className="w-full rounded-full" asChild>
                             <a href={action.href} target="_blank" rel="noopener noreferrer">

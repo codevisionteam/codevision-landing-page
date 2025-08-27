@@ -1,0 +1,293 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "portfolio": "Portfolio", 
+    "career": "Karir",
+    "faq": "FAQ",
+    "contact": "Kontak"
+  },
+  "common": {
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "viewMore": "Lihat Selengkapnya",
+    "viewAll": "Lihat Semua",
+    "readMore": "Baca Selengkapnya",
+    "getStarted": "Mulai Sekarang",
+    "learnMore": "Pelajari Lebih Lanjut",
+    "contactUs": "Hubungi Kami",
+    "backToHome": "Kembali ke Beranda",
+    "comingSoon": "Segera Hadir"
+  },
+  "hero": {
+    "badge": "Solusi Digital Terdepan",
+    "title": "Wujudkan Visi Digital Anda Bersama Codevision",
+    "subtitle": "Kami adalah software house profesional yang mengkhususkan diri dalam pengembangan aplikasi web, mobile, dan solusi SaaS inovatif untuk membantu bisnis Anda berkembang di era digital.",
+    "cta": {
+      "primary": "Mulai Proyek Anda",
+      "secondary": "Lihat Portfolio"
+    }
+  },
+  "services": {
+    "badge": "Layanan Kami",
+    "title": "Solusi Teknologi Terbaik",
+    "subtitle": "Kami menyediakan berbagai layanan pengembangan software yang disesuaikan dengan kebutuhan bisnis Anda",
+    "items": {
+      "webDev": {
+        "title": "Pengembangan Web",
+        "description": "Aplikasi web modern dan responsif menggunakan teknologi terdepan seperti React, Next.js, dan Node.js"
+      },
+      "mobileDev": {
+        "title": "Aplikasi Mobile",
+        "description": "Aplikasi mobile native dan cross-platform untuk iOS dan Android menggunakan React Native dan Flutter"
+      },
+      "saas": {
+        "title": "Solusi SaaS",
+        "description": "Platform Software as a Service yang scalable dan secure untuk berbagai kebutuhan bisnis"
+      },
+      "b2b": {
+        "title": "Aplikasi B2B",
+        "description": "Sistem enterprise dan aplikasi bisnis untuk meningkatkan efisiensi operasional perusahaan"
+      }
+    }
+  },
+  "portfolio": {
+    "badge": "Portfolio Terpilih",
+    "title": "Karya Terbaik Kami",
+    "subtitle": "Lihat beberapa proyek unggulan yang telah kami kerjakan untuk berbagai klien dari berbagai industri",
+    "viewProject": "Lihat Proyek",
+    "techStack": "Teknologi yang Digunakan",
+    "projectDetails": "Detail Proyek",
+    "clientTestimonial": "Testimoni Klien",
+    "categories": {
+      "all": "Semua",
+      "web": "Web App",
+      "mobile": "Mobile App", 
+      "saas": "SaaS",
+      "b2b": "B2B"
+    }
+  },
+  "testimonials": {
+    "badge": "Testimoni Klien",
+    "title": "Apa Kata Klien Kami",
+    "subtitle": "Kepuasan klien adalah prioritas utama kami. Berikut testimoni dari berbagai klien yang telah bekerja sama dengan Codevision"
+  },
+  "career": {
+    "badge": "Bergabung dengan Tim Kami",
+    "title": "Karir di Codevision",
+    "subtitle": "Bergabunglah dengan tim profesional kami dan kembangkan karir Anda di industri teknologi yang dinamis dan penuh inovasi.",
+    "valueProps": {
+      "innovation": {
+        "title": "Inovasi Terus-Menerus",
+        "description": "Bekerja dengan teknologi terdepan"
+      },
+      "team": {
+        "title": "Tim yang Solid",
+        "description": "Kolaborasi dengan profesional terbaik"
+      },
+      "growth": {
+        "title": "Pengembangan Karir",
+        "description": "Kesempatan berkembang tanpa batas"
+      }
+    },
+    "positions": {
+      "title": "Posisi yang Tersedia",
+      "subtitle": "Temukan posisi yang sesuai dengan keahlian dan passion Anda",
+      "applyNow": "Lamar Sekarang",
+      "viewDetails": "Lihat Detail",
+      "filters": {
+        "level": "Level",
+        "type": "Tipe",
+        "function": "Fungsi",
+        "clearAll": "Hapus Semua"
+      },
+      "levels": {
+        "all": "Semua Level",
+        "intern": "Internship",
+        "junior": "Junior",
+        "mid": "Mid Level", 
+        "senior": "Senior"
+      },
+      "types": {
+        "all": "Semua Tipe",
+        "fullTime": "Full Time",
+        "partTime": "Part Time",
+        "internship": "Internship",
+        "contract": "Kontrak"
+      },
+      "functions": {
+        "all": "Semua Fungsi",
+        "engineering": "Engineering",
+        "design": "Design",
+        "product": "Product",
+        "marketing": "Marketing",
+        "content": "Content"
+      }
+    },
+    "benefits": {
+      "title": "Benefit & Fasilitas",
+      "subtitle": "Nikmati berbagai benefit menarik yang kami sediakan untuk tim terbaik kami",
+      "items": {
+        "healthInsurance": {
+          "title": "Asuransi Kesehatan",
+          "description": "Asuransi kesehatan lengkap untuk karyawan dan keluarga"
+        },
+        "flexibleWorking": {
+          "title": "Flexible Working",
+          "description": "Work from home dan jam kerja fleksibel"
+        },
+        "teamBuilding": {
+          "title": "Team Building",
+          "description": "Kegiatan team building dan company trip rutin"
+        },
+        "learningBudget": {
+          "title": "Learning Budget",
+          "description": "Budget khusus untuk training dan sertifikasi"
+        },
+        "performanceBonus": {
+          "title": "Performance Bonus",
+          "description": "Bonus kinerja dan insentif menarik"
+        },
+        "freeMeals": {
+          "title": "Free Meals & Snacks",
+          "description": "Makan siang gratis dan snack sepuasnya"
+        },
+        "recreationRoom": {
+          "title": "Recreation Room",
+          "description": "Ruang rekreasi dengan games dan hiburan"
+        }
+      }
+    },
+    "application": {
+      "title": "Lamar Posisi",
+      "subtitle": "Isi formulir di bawah untuk melamar posisi yang Anda inginkan",
+      "form": {
+        "fullName": "Nama Lengkap",
+        "email": "Email",
+        "phone": "Nomor Telepon",
+        "experience": "Pengalaman Kerja",
+        "portfolio": "Link Portfolio",
+        "coverLetter": "Cover Letter",
+        "consent": "Saya menyetujui penggunaan data pribadi untuk proses rekrutmen",
+        "submit": "Kirim Lamaran",
+        "submitting": "Mengirim..."
+      },
+      "success": {
+        "title": "Lamaran Berhasil Dikirim!",
+        "message": "Terima kasih telah melamar. Tim HR kami akan menghubungi Anda dalam 1-2 hari kerja."
+      }
+    }
+  },
+  "faq": {
+    "badge": "Pusat Bantuan",
+    "title": "FAQ",
+    "subtitle": "Temukan jawaban untuk pertanyaan umum tentang layanan, proses, dan kebijakan kami. Semua yang perlu Anda ketahui ada di sini.",
+    "categories": {
+      "services": "Layanan",
+      "pricing": "Harga", 
+      "security": "Keamanan",
+      "process": "Proses"
+    },
+    "categoriesFull": {
+      "services": "Layanan & Produk",
+      "pricing": "Harga & Pembayaran",
+      "security": "Keamanan & Privasi",
+      "process": "Proses & Timeline"
+    },
+    "cta": {
+      "title": "Masih Ada Pertanyaan?",
+      "subtitle": "Tim ahli kami siap membantu Anda dengan pertanyaan spesifik tentang proyek atau kebutuhan teknis Anda.",
+      "contact": "Hubungi Kami",
+      "consultation": "Konsultasi Gratis"
+    }
+  },
+  "contact": {
+    "badge": "Hubungi Kami", 
+    "title": "Mari Berdiskusi",
+    "subtitle": "Ceritakan ide dan visi Anda kepada kami. Tim ahli Codevision siap membantu mewujudkan solusi teknologi yang tepat untuk bisnis Anda.",
+    "valueProps": {
+      "quickResponse": {
+        "title": "Respon Cepat",
+        "subtitle": "dalam jam kerja"
+      },
+      "freeConsultation": {
+        "title": "Konsultasi Gratis",
+        "subtitle": "30 menit"
+      },
+      "professionalService": {
+        "title": "Layanan Profesional", 
+        "subtitle": "Tim berpengalaman"
+      }
+    },
+    "quickActions": {
+      "title": "Cara Tercepat Menghubungi Kami",
+      "subtitle": "Pilih cara yang paling nyaman untuk Anda",
+      "whatsapp": {
+        "title": "Chat WhatsApp",
+        "description": "Respon cepat dalam jam kerja",
+        "action": "Mulai Chat"
+      },
+      "meeting": {
+        "title": "Jadwalkan Meeting",
+        "description": "Konsultasi gratis 30 menit", 
+        "action": "Book Now"
+      }
+    },
+    "form": {
+      "title": "Kirim Pesan",
+      "subtitle": "Ceritakan proyek atau kebutuhan Anda, dan kami akan merespon dengan solusi terbaik.",
+      "name": "Nama Lengkap",
+      "email": "Email",
+      "phone": "Nomor Telepon",
+      "company": "Nama Perusahaan",
+      "subject": "Subjek",
+      "message": "Pesan",
+      "submit": "Kirim Pesan",
+      "submitting": "Mengirim..."
+    },
+    "info": {
+      "title": "Informasi Kontak",
+      "address": {
+        "title": "Alamat Kantor",
+        "value": "Jl Temanggung Silam RT 002/RW 004 NO 29\nPuruk Cahu, Kec. Murung, Kabupaten Murung Raya\nKalimantan Tengah 73911"
+      },
+      "phone": {
+        "title": "Telepon", 
+        "value": "+6285773333569"
+      },
+      "email": {
+        "title": "Email",
+        "value": "hello@codevision.id"
+      },
+      "hours": {
+        "title": "Jam Operasional",
+        "value": "Senin - Jumat: 09:00 - 18:00\nMinggu - Minggu: Tutup"
+      }
+    },
+    "map": {
+      "title": "Lokasi Kantor",
+      "subtitle": "Kalimantan Tengah"
+    },
+    "cta": {
+      "title": "Siap Memulai Proyek Anda?",
+      "subtitle": "Konsultasi gratis untuk membahas ide, estimasi timeline, dan teknologi yang tepat untuk proyek Anda.",
+      "schedule": "Jadwalkan Konsultasi",
+      "chat": "Chat Sekarang"
+    }
+  },
+  "footer": {
+    "description": "Software house profesional Indonesia yang mengkhususkan diri dalam solusi digital inovatif.",
+    "quickLinks": "Link Cepat",
+    "services": "Layanan",
+    "contact": "Kontak",
+    "location": "Kalimantan Tengah",
+    "copyright": "Semua hak dilindungi.",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsConditions": "Syarat & Ketentuan"
+  },
+  "servicesList": {
+    "web": "Pengembangan Web",
+    "mobile": "Aplikasi Mobile", 
+    "saas": "Solusi SaaS",
+    "b2b": "Aplikasi B2B"
+  }
+}
