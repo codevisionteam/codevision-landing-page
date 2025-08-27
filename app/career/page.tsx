@@ -2,8 +2,8 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { Filter, Clock, Heart, Users, Zap, Award, Coffee, Gamepad2, Star, Target, Rocket, Globe, Code, Palette, Database } from "lucide-react"
+import { useState, useRef } from "react"
+import { Filter, Clock, Heart, Users, Zap, Award, Coffee, Gamepad2, Star, Target, Rocket, Globe, Code, Palette, Database, Upload, FileText, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -247,7 +247,9 @@ export default function CareerPage() {
     portfolio: "",
     coverLetter: "",
     consent: false,
+    cv: null as File | null,
   })
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const filteredJobs = extendedJobs.filter((job) => {
     // Hide full-time positions by default unless specifically selected
@@ -277,34 +279,131 @@ export default function CareerPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // Debug: Log application data before sending
+      console.log('Application data before sending:', {
+        name: applicationData.name,
+        email: applicationData.email,
+        phone: applicationData.phone,
+        experience: applicationData.experience,
+        portfolio: applicationData.portfolio,
+        coverLetter: applicationData.coverLetter,
+        position: selectedJob,
+        cv: applicationData.cv ? `${applicationData.cv.name} (${applicationData.cv.size} bytes)` : 'none',
+        consent: applicationData.consent
+      })
 
-    toast({
-      title: locale === "id" ? "Lamaran Terkirim!" : "Application Sent!",
-      description:
-        locale === "id"
-          ? "Terima kasih atas lamaran Anda. Tim HR kami akan menghubungi Anda segera."
-          : "Thank you for your application. Our HR team will contact you soon.",
-    })
+      const formData = new FormData()
+      formData.append('name', applicationData.name)
+      formData.append('email', applicationData.email)
+      formData.append('phone', applicationData.phone)
+      formData.append('experience', applicationData.experience)
+      formData.append('portfolio', applicationData.portfolio)
+      formData.append('coverLetter', applicationData.coverLetter)
+      formData.append('position', selectedJob || '')
+      
+      if (applicationData.cv) {
+        formData.append('cv', applicationData.cv)
+      }
 
-    // Reset form and close modal
-    setApplicationData({
-      name: "",
-      email: "",
-      phone: "",
-      experience: "",
-      portfolio: "",
-      coverLetter: "",
-      consent: false,
-    })
-    setIsModalOpen(false)
-    setSelectedJob(null)
-    setIsSubmitting(false)
+      const response = await fetch('/api/career/apply', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        toast({
+          title: locale === "id" ? "Lamaran Terkirim!" : "Application Sent!",
+          description:
+            locale === "id"
+              ? "Terima kasih atas lamaran Anda. Tim HR kami akan menghubungi Anda segera."
+              : "Thank you for your application. Our HR team will contact you soon.",
+        })
+
+        // Reset form and close modal
+        setApplicationData({
+          name: "",
+          email: "",
+          phone: "",
+          experience: "",
+          portfolio: "",
+          coverLetter: "",
+          consent: false,
+          cv: null,
+        })
+        setIsModalOpen(false)
+        setSelectedJob(null)
+      } else {
+        console.error('API Error Response:', result)
+        throw new Error(result.error || 'Failed to submit application')
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error)
+      
+      // Show more specific error message if available
+      let errorMessage = locale === "id" 
+        ? "Terjadi kesalahan saat mengirim lamaran. Silakan coba lagi."
+        : "An error occurred while sending your application. Please try again."
+      
+      if (error instanceof Error && error.message !== 'Failed to submit application') {
+        errorMessage = error.message
+      }
+      
+      toast({
+        title: locale === "id" ? "Gagal Mengirim" : "Failed to Send",
+        description: errorMessage,
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
-  const handleInputChange = (field: keyof typeof applicationData, value: string | boolean) => {
+  const handleInputChange = (field: keyof typeof applicationData, value: string | boolean | File | null) => {
     setApplicationData((prev) => ({ ...prev, [field]: value }))
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      // Check file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        toast({
+          title: locale === "id" ? "File Terlalu Besar" : "File Too Large",
+          description:
+            locale === "id"
+              ? "Ukuran file maksimal 5MB"
+              : "Maximum file size is 5MB",
+          variant: "destructive",
+        })
+        return
+      }
+
+      // Check file type
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+      if (!allowedTypes.includes(file.type)) {
+        toast({
+          title: locale === "id" ? "Format File Tidak Didukung" : "Unsupported File Format",
+          description:
+            locale === "id"
+              ? "Hanya file PDF dan DOC/DOCX yang diperbolehkan"
+              : "Only PDF and DOC/DOCX files are allowed",
+          variant: "destructive",
+        })
+        return
+      }
+
+      handleInputChange('cv', file)
+    }
+  }
+
+  const removeFile = () => {
+    handleInputChange('cv', null)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
   }
 
   return (
@@ -693,20 +792,39 @@ export default function CareerPage() {
               </div>
 
               <div>
-                <Label htmlFor="experience">{locale === "id" ? "Pengalaman Kerja" : "Work Experience"}</Label>
+                <Label htmlFor="experience">
+                  {locale === "id" ? "Pengalaman Kerja" : "Work Experience"}
+                  <span className="text-red-500 ml-1">*</span>
+                  <span className="text-xs text-muted-foreground ml-2">
+                    ({locale === "id" ? "Min. 10 karakter" : "Min. 10 characters"})
+                  </span>
+                </Label>
                 <Textarea
                   id="experience"
                   required
+                  minLength={10}
                   value={applicationData.experience}
                   onChange={(e) => handleInputChange("experience", e.target.value)}
                   className="mt-1"
                   rows={3}
+                  placeholder={
+                    locale === "id"
+                      ? "Jelaskan pengalaman kerja Anda... (minimal 10 karakter)"
+                      : "Describe your work experience... (minimum 10 characters)"
+                  }
                 />
+                {applicationData.experience.length > 0 && applicationData.experience.length < 10 && (
+                  <p className="text-xs text-red-500 mt-1">
+                    {locale === "id" 
+                      ? `${10 - applicationData.experience.length} karakter lagi diperlukan`
+                      : `${10 - applicationData.experience.length} more characters needed`}
+                  </p>
+                )}
               </div>
 
               <div>
                 <Label htmlFor="portfolio">
-                  {locale === "id" ? "Link Portfolio/CV" : "Portfolio/CV Link"}
+                  {locale === "id" ? "Link Portfolio" : "Portfolio Link"}
                 </Label>
                 <Input
                   id="portfolio"
@@ -719,19 +837,88 @@ export default function CareerPage() {
               </div>
 
               <div>
-                <Label htmlFor="coverLetter">{locale === "id" ? "Cover Letter" : "Cover Letter"}</Label>
+                <Label htmlFor="cv">
+                  {locale === "id" ? "Upload CV/Resume" : "Upload CV/Resume"}
+                </Label>
+                <div className="mt-1">
+                  {!applicationData.cv ? (
+                    <div
+                      onClick={() => fileInputRef.current?.click()}
+                      className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-muted/50 transition-colors"
+                    >
+                      <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground mb-1">
+                        {locale === "id" 
+                          ? "Klik untuk upload CV/Resume"
+                          : "Click to upload CV/Resume"}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {locale === "id" 
+                          ? "PDF, DOC, DOCX (Maks. 5MB)"
+                          : "PDF, DOC, DOCX (Max. 5MB)"}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between p-3 bg-muted rounded-lg border">
+                      <div className="flex items-center space-x-3">
+                        <FileText className="h-5 w-5 text-primary" />
+                        <div>
+                          <p className="text-sm font-medium">{applicationData.cv.name}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {(applicationData.cv.size / 1024 / 1024).toFixed(2)} MB
+                          </p>
+                        </div>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={removeFile}
+                        className="h-8 w-8 p-0 hover:bg-destructive/10 hover:text-destructive"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  )}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={handleFileChange}
+                    className="hidden"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="coverLetter">
+                  {locale === "id" ? "Cover Letter" : "Cover Letter"}
+                  <span className="text-red-500 ml-1">*</span>
+                  <span className="text-xs text-muted-foreground ml-2">
+                    ({locale === "id" ? "Min. 50 karakter" : "Min. 50 characters"})
+                  </span>
+                </Label>
                 <Textarea
                   id="coverLetter"
+                  required
+                  minLength={50}
                   value={applicationData.coverLetter}
                   onChange={(e) => handleInputChange("coverLetter", e.target.value)}
                   className="mt-1"
                   rows={4}
                   placeholder={
                     locale === "id"
-                      ? "Ceritakan mengapa Anda tertarik dengan posisi ini..."
-                      : "Tell us why you're interested in this position..."
+                      ? "Ceritakan mengapa Anda tertarik dengan posisi ini... (minimal 50 karakter)"
+                      : "Tell us why you're interested in this position... (minimum 50 characters)"
                   }
                 />
+                {applicationData.coverLetter.length > 0 && applicationData.coverLetter.length < 50 && (
+                  <p className="text-xs text-red-500 mt-1">
+                    {locale === "id" 
+                      ? `${50 - applicationData.coverLetter.length} karakter lagi diperlukan`
+                      : `${50 - applicationData.coverLetter.length} more characters needed`}
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center space-x-2">
