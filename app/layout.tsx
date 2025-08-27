@@ -17,6 +17,8 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 })
 
+const logoBaseUrl = process.env.NEXT_PUBLIC_LOGO_BASE_URL || "/images/logo"
+
 export const metadata: Metadata = {
   title: "Codevision - Transforming Ideas into Digital Solutions",
   description:
@@ -24,6 +26,11 @@ export const metadata: Metadata = {
   generator: "Codevision",
   keywords: ["software development", "web development", "mobile apps", "SaaS", "Indonesia", "digital solutions"],
   authors: [{ name: "Codevision Team" }],
+  icons: {
+    icon: `${logoBaseUrl}/logo-icon.svg`,
+    shortcut: `${logoBaseUrl}/logo-icon.svg`,
+    apple: `${logoBaseUrl}/logo-icon.png`,
+  },
   openGraph: {
     title: "Codevision - Transforming Ideas into Digital Solutions",
     description:
@@ -31,6 +38,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     alternateLocale: "en_US",
+    images: [
+      {
+        url: `${logoBaseUrl}/logo-text.png`,
+        width: 1200,
+        height: 630,
+        alt: "Codevision Logo",
+      },
+    ],
   },
 }
 

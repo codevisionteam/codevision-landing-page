@@ -31,7 +31,8 @@ export function Logo({ className, size = "lg", variant = "textIcon", alt }: Logo
 
   const h = heightMap[normalized][size]
   const w = Math.round(h * aspect[normalized])
-  const src = normalized === "logo" ? "/images/logo/logo-icon.svg" : "/images/logo/logo-text.svg"
+  const logoBaseUrl = process.env.NEXT_PUBLIC_LOGO_BASE_URL || "/images/logo"
+  const src = normalized === "logo" ? `${logoBaseUrl}/logo-icon.svg` : `${logoBaseUrl}/logo-text.svg`
   const altText = alt || (normalized === "logo" ? "Codevision logo" : "Codevision")
 
   return (

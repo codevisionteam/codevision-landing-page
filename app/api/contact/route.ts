@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendContactEmail } from '@/lib/brevo';
+import { sendContactEmails } from '@/lib/brevo';
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,16 +23,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Kirim email menggunakan Brevo
-    await sendContactEmail({
+    // Send email notifications (both to admin and auto-reply to user)
+    const { notificationSent, autoReplySent } = await sendContactEmails({
       name,
       email,
       subject,
-      message
+      message,
+      phone: ''
     });
+    
+    if (!notificationSent && !autoReplySent) {
+      return NextResponse.json(
+        { error: "Failed to send email notifications" },
+        { status: 500 }
+      );
+    }
+    
+    // Log partial success if only one email type failed
+    if (!notificationSent) {
+      console.warn("Admin notification email failed to send");
+    }
+    if (!autoReplySent) {
+      console.warn("Auto-reply email failed to send");
+    }
 
     return NextResponse.json(
-      { message: 'Pesan berhasil dikirim! Kami akan segera menghubungi Anda.' },
+      { 
+        message: 'Pesan berhasil dikirim! Kami akan segera menghubungi Anda.',
+        emailStatus: {
+          notificationSent,
+          autoReplySent
+        }
+      },
       { status: 200 }
     );
   } catch (error) {

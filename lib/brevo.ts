@@ -34,6 +34,7 @@ export interface CareerApplicationData {
 export interface ContactFormData {
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
 }
@@ -68,10 +69,450 @@ export async function sendEmail(emailData: EmailTemplate): Promise<boolean> {
   }
 }
 
+// Send contact form emails (notification + auto-reply)
+export async function sendContactEmails(contactData: ContactFormData): Promise<{
+  notificationSent: boolean;
+  autoReplySent: boolean;
+}> {
+  const logoBaseUrl = process.env.NEXT_PUBLIC_LOGO_BASE_URL || '/images/logo';
+
+  // Admin notification email template
+  const adminEmailTemplate = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>New Contact Form Submission</title>
+      <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          background-color: #f5f5f5;
+          padding: 20px;
+        }
+        
+        .email-container {
+          max-width: 600px;
+          margin: 0 auto;
+          background: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+        
+        .header {
+          background-color: #1B3C53;
+          padding: 30px;
+          text-align: center;
+        }
+        
+        .logo {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 15px;
+        }
+        
+        .logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        
+        .header h1 {
+          color: #ffffff;
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        
+        .header p {
+          color: #ffffff;
+          opacity: 0.9;
+          font-size: 14px;
+        }
+        
+        .content {
+          padding: 30px;
+        }
+        
+        .contact-info {
+          background-color: #f8f9fa;
+          border-radius: 6px;
+          padding: 20px;
+          margin-bottom: 20px;
+          border-left: 4px solid #456882;
+        }
+        
+        .info-row {
+          margin-bottom: 15px;
+        }
+        
+        .info-row:last-child {
+          margin-bottom: 0;
+        }
+        
+        .info-label {
+          font-weight: 600;
+          color: #1B3C53;
+          display: block;
+          margin-bottom: 4px;
+        }
+        
+        .info-value {
+          color: #456882;
+          word-break: break-word;
+        }
+        
+        .message-content {
+          background-color: #ffffff;
+          border: 1px solid #e9ecef;
+          border-radius: 6px;
+          padding: 15px;
+          color: #495057;
+          line-height: 1.6;
+          margin-top: 10px;
+        }
+        
+        .cta-section {
+          text-align: center;
+          margin: 25px 0;
+        }
+        
+        .cta-button {
+          display: inline-block;
+          background-color: #456882;
+          color: #ffffff;
+          text-decoration: none;
+          padding: 12px 24px;
+          border-radius: 6px;
+          font-weight: 500;
+          font-size: 14px;
+        }
+        
+        .footer {
+          background-color: #1B3C53;
+          padding: 25px;
+          text-align: center;
+        }
+        
+        .footer-logo {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto 15px;
+        }
+        
+        .footer-logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        
+        .footer p {
+          color: #ffffff;
+          opacity: 0.8;
+          font-size: 12px;
+          margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+          .email-container {
+            margin: 10px;
+          }
+          
+          .header, .content, .footer {
+            padding: 20px;
+          }
+          
+          .contact-info {
+            padding: 15px;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="email-container">
+        <div class="header">
+          <div class="logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision Logo">
+          </div>
+          <h1>New Contact Submission</h1>
+          <p>You have received a new message from your website</p>
+        </div>
+        
+        <div class="content">
+          <div class="contact-info">
+            <div class="info-row">
+              <span class="info-label">Name:</span>
+              <span class="info-value">${contactData.name}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email:</span>
+              <span class="info-value">${contactData.email}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Phone:</span>
+              <span class="info-value">${contactData.phone}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Subject:</span>
+              <span class="info-value">${contactData.subject}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Message:</span>
+              <div class="message-content">
+                ${contactData.message.replace(/\n/g, '<br>')}
+              </div>
+            </div>
+          </div>
+          
+          <div class="cta-section">
+            <a href="mailto:${contactData.email}" class="cta-button">Reply to ${contactData.name}</a>
+          </div>
+        </div>
+        
+        <div class="footer">
+          <div class="footer-logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision Logo">
+          </div>
+          <p>&copy; 2024 Codevision. All rights reserved.</p>
+          <p>This email was sent from your website contact form.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  // Auto-reply email template
+  const autoReplyTemplate = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thank you for contacting us</title>
+      <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          background-color: #f5f5f5;
+          padding: 20px;
+        }
+        
+        .email-container {
+          max-width: 600px;
+          margin: 0 auto;
+          background: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+        
+        .header {
+          background-color: #1B3C53;
+          padding: 30px;
+          text-align: center;
+        }
+        
+        .logo {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 15px;
+        }
+        
+        .logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        
+        .header h1 {
+          color: #ffffff;
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        
+        .header p {
+          color: #ffffff;
+          opacity: 0.9;
+          font-size: 14px;
+        }
+        
+        .content {
+          padding: 30px;
+        }
+        
+        .message {
+          background-color: #f8f9fa;
+          border-radius: 6px;
+          padding: 20px;
+          margin-bottom: 20px;
+          border-left: 4px solid #456882;
+        }
+        
+        .message h2 {
+          color: #1B3C53;
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+        
+        .message p {
+          color: #456882;
+          margin-bottom: 10px;
+        }
+        
+        .cta-section {
+          text-align: center;
+          margin: 25px 0;
+        }
+        
+        .cta-button {
+          display: inline-block;
+          background-color: #456882;
+          color: #ffffff;
+          text-decoration: none;
+          padding: 12px 24px;
+          border-radius: 6px;
+          font-weight: 500;
+          font-size: 14px;
+        }
+        
+        .footer {
+          background-color: #1B3C53;
+          padding: 25px;
+          text-align: center;
+        }
+        
+        .footer-logo {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto 15px;
+        }
+        
+        .footer-logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        
+        .footer p {
+          color: #ffffff;
+          opacity: 0.8;
+          font-size: 12px;
+          margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+          .email-container {
+            margin: 10px;
+          }
+          
+          .header, .content, .footer {
+            padding: 20px;
+          }
+          
+          .message {
+            padding: 15px;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="email-container">
+        <div class="header">
+          <div class="logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision Logo">
+          </div>
+          <h1>Thank You for Contacting Us</h1>
+          <p>We have received your message and will get back to you soon</p>
+        </div>
+        
+        <div class="content">
+          <div class="message">
+            <h2>Hello ${contactData.name},</h2>
+            <p>Thank you for reaching out to us. We have received your message regarding "${contactData.subject}" and our team will review it shortly.</p>
+            <p>We typically respond within 24 hours during business days. If your inquiry is urgent, please feel free to call us directly.</p>
+          </div>
+          
+          <div class="cta-section">
+            <a href="https://codevision.com" class="cta-button">Visit Our Website</a>
+          </div>
+        </div>
+        
+        <div class="footer">
+          <div class="footer-logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision Logo">
+          </div>
+          <p>&copy; 2024 Codevision. All rights reserved.</p>
+          <p>This is an automated response. Please do not reply to this email.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const adminEmail: EmailTemplate = {
+    to: [{ 
+      email: process.env.BREVO_ADMIN_EMAIL || "hello@codevision.com", 
+      name: "Codevision Admin" 
+    }],
+    subject: `New Contact Form Submission from ${contactData.name}`,
+    htmlContent: adminEmailTemplate,
+    replyTo: { email: contactData.email, name: contactData.name },
+  };
+
+  const autoReplyEmail: EmailTemplate = {
+    to: [{ email: contactData.email, name: contactData.name }],
+    subject: "Thank you for contacting Codevision",
+    htmlContent: autoReplyTemplate,
+  };
+
+  const [notificationSent, autoReplySent] = await Promise.all([
+    sendEmail(adminEmail),
+    sendEmail(autoReplyEmail),
+  ]);
+
+  return { notificationSent, autoReplySent };
+}
+
+// Career application functions remain the same...
+export async function sendCareerApplicationEmails(applicationData: CareerApplicationData): Promise<{
+  notificationSent: boolean;
+  confirmationSent: boolean;
+}> {
+  const [notificationSent, confirmationSent] = await Promise.all([
+    sendEmail(generateAdminNotificationEmail(applicationData)),
+    sendEmail(generateApplicantConfirmationEmail(applicationData)),
+  ]);
+
+  return { notificationSent, confirmationSent };
+}
+
 // Generate confirmation email for applicant
 export function generateApplicantConfirmationEmail(
   applicationData: CareerApplicationData
 ): EmailTemplate {
+  const logoBaseUrl = process.env.NEXT_PUBLIC_LOGO_BASE_URL || "/images/logo";
+  
   const htmlContent = `
     <!DOCTYPE html>
     <html>
@@ -79,90 +520,182 @@ export function generateApplicantConfirmationEmail(
       <meta charset="utf-8">
       <title>Konfirmasi Lamaran Kerja - Codevision</title>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
-        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
-        .highlight { background: #e3f2fd; padding: 15px; border-radius: 5px; margin: 20px 0; }
-        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
+          line-height: 1.6; 
+          color: #333;
+          background-color: #f5f5f5;
+          padding: 20px;
+        }
+        .email-container {
+          max-width: 600px;
+          margin: 0 auto;
+          background: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+        .header { 
+          background-color: #1B3C53; 
+          color: #ffffff; 
+          padding: 30px; 
+          text-align: center;
+        }
+        .logo {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 15px;
+        }
+        .logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        .header h1 {
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        .header p {
+          font-size: 14px;
+          opacity: 0.9;
+        }
+        .content { 
+          padding: 30px;
+        }
+        .highlight { 
+          background-color: #f8f9fa;
+          border-left: 4px solid #456882;
+          padding: 20px; 
+          border-radius: 6px; 
+          margin: 20px 0;
+        }
+        .highlight h3 {
+          color: #1B3C53;
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+        .highlight ul {
+          list-style: none;
+          padding: 0;
+        }
+        .highlight li {
+          padding: 8px 0;
+          border-bottom: 1px solid #e9ecef;
+        }
+        .highlight li:last-child {
+          border-bottom: none;
+        }
+        .highlight li strong {
+          color: #1B3C53;
+          font-weight: 600;
+          display: inline-block;
+          min-width: 100px;
+        }
+        .cta-section {
+          background-color: #f8f9fa;
+          border-radius: 6px;
+          padding: 20px;
+          margin: 20px 0;
+          text-align: center;
+        }
+        .cta-button {
+          display: inline-block;
+          background-color: #456882;
+          color: #ffffff;
+          padding: 12px 24px;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: 500;
+          margin-top: 10px;
+        }
+        .footer { 
+          background-color: #1B3C53;
+          text-align: center; 
+          padding: 25px;
+          color: #ffffff; 
+        }
+        .footer-logo {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto 15px;
+        }
+        .footer-logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        .footer p {
+          font-size: 12px;
+          opacity: 0.8;
+          margin-bottom: 8px;
+        }
+        @media (max-width: 600px) {
+          .header, .content, .footer { padding: 20px; }
+          .highlight { padding: 15px; }
+        }
       </style>
     </head>
     <body>
-      <div class="container">
+      <div class="email-container">
         <div class="header">
+          <div class="logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision Logo" />
+          </div>
           <h1>Terima Kasih atas Lamaran Anda!</h1>
+          <p>Kami sangat menghargai minat Anda untuk bergabung dengan tim kami</p>
         </div>
         <div class="content">
           <p>Halo <strong>${applicationData.fullName}</strong>,</p>
           
-          <p>Terima kasih telah melamar untuk posisi <strong>${
-            applicationData.position
-          }</strong> di Codevision. Kami telah menerima lamaran Anda dan akan segera meninjau aplikasi Anda.</p>
+          <p>Terima kasih telah melamar untuk posisi <strong>${applicationData.position}</strong> di Codevision. Kami telah menerima lamaran Anda dan akan segera meninjau aplikasi Anda dengan seksama.</p>
           
           <div class="highlight">
-            <h3>Detail Lamaran Anda:</h3>
+            <h3>📋 Detail Lamaran Anda</h3>
             <ul>
               <li><strong>Posisi:</strong> ${applicationData.position}</li>
               <li><strong>Email:</strong> ${applicationData.email}</li>
               <li><strong>Telepon:</strong> ${applicationData.phone}</li>
-              <li><strong>Pengalaman:</strong> ${
-                applicationData.experience
-              }</li>
-              ${
-                applicationData.portfolio
-                  ? `<li><strong>Portfolio:</strong> <a href="${applicationData.portfolio}">${applicationData.portfolio}</a></li>`
-                  : ""
-              }
+              <li><strong>Pengalaman:</strong> ${applicationData.experience}</li>
+              ${applicationData.portfolio ? `<li><strong>Portfolio:</strong> ${applicationData.portfolio}</li>` : ""}
             </ul>
           </div>
           
-          <p>Tim HR kami akan menghubungi Anda dalam 1-2 hari kerja untuk tahap selanjutnya. Pastikan untuk memeriksa email Anda secara berkala, termasuk folder spam.</p>
+          <div class="cta-section">
+            <h3 style="color: #1B3C53; margin-bottom: 10px;">🚀 Langkah Selanjutnya</h3>
+            <p style="color: #456882; margin-bottom: 15px;">Tim HR kami akan menghubungi Anda dalam 1-2 hari kerja untuk tahap selanjutnya.</p>
+            <a href="mailto:hello@codevision.id" class="cta-button">Hubungi Kami</a>
+          </div>
           
-          <p>Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami di <a href="mailto:hr@codevision.com">hr@codevision.com</a>.</p>
+          <p>Pastikan untuk memeriksa email Anda secara berkala, termasuk folder spam. Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami.</p>
           
-          <p>Salam hangat,<br><strong>Tim HR Codevision</strong></p>
+          <p style="margin-top: 25px; color: #1B3C53; font-weight: 600;">
+            Salam hangat,<br>
+            <span style="color: #456882;">Tim HR Codevision</span>
+          </p>
         </div>
         <div class="footer">
+          <div class="footer-logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision" />
+          </div>
           <p>© 2025 Codevision. Semua hak dilindungi.</p>
+          <p>Email ini dikirim secara otomatis. Mohon jangan membalas email ini.</p>
         </div>
       </div>
     </body>
     </html>
   `;
 
-  const textContent = `
-    Terima Kasih atas Lamaran Anda!
-    
-    Halo ${applicationData.fullName},
-    
-    Terima kasih telah melamar untuk posisi ${
-      applicationData.position
-    } di Codevision. Kami telah menerima lamaran Anda dan akan segera meninjau aplikasi Anda.
-    
-    Detail Lamaran Anda:
-    - Posisi: ${applicationData.position}
-    - Email: ${applicationData.email}
-    - Telepon: ${applicationData.phone}
-    - Pengalaman: ${applicationData.experience}
-    ${
-      applicationData.portfolio
-        ? `- Portfolio: ${applicationData.portfolio}`
-        : ""
-    }
-    
-    Tim HR kami akan menghubungi Anda dalam 1-2 hari kerja untuk tahap selanjutnya.
-    
-    Salam hangat,
-    Tim HR Codevision
-  `;
-
   return {
     to: [{ email: applicationData.email, name: applicationData.fullName }],
     subject: `Konfirmasi Lamaran - ${applicationData.position} di Codevision`,
     htmlContent,
-    textContent,
     replyTo: {
-      email: process.env.BREVO_ADMIN_EMAIL || "hr@codevision.com",
+      email: process.env.BREVO_ADMIN_EMAIL || "hello@codevision.com",
       name: "HR Codevision",
     },
   };
@@ -172,223 +705,199 @@ export function generateApplicantConfirmationEmail(
 export function generateAdminNotificationEmail(
   applicationData: CareerApplicationData
 ): EmailTemplate {
+  const logoBaseUrl = process.env.NEXT_PUBLIC_LOGO_BASE_URL || "/images/logo";
+  
   const htmlContent = `
     <!DOCTYPE html>
     <html>
     <head>
       <meta charset="utf-8">
-      <title>Lamaran Baru - ${applicationData.position}</title>
+      <title>Lamaran Kerja Baru - Codevision</title>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: #2c3e50; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
-        .applicant-info { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #3498db; }
-        .cover-letter { background: #ecf0f1; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
+          line-height: 1.6; 
+          color: #333;
+          background-color: #f5f5f5;
+          padding: 20px;
+        }
+        .email-container {
+          max-width: 600px;
+          margin: 0 auto;
+          background: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+        .header { 
+          background-color: #1B3C53; 
+          color: #ffffff; 
+          padding: 30px; 
+          text-align: center;
+        }
+        .logo {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 15px;
+        }
+        .logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        .header h1 {
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        .content { 
+          padding: 30px;
+        }
+        .applicant-info {
+          background-color: #f8f9fa;
+          border-left: 4px solid #456882;
+          padding: 20px; 
+          border-radius: 6px; 
+          margin: 20px 0;
+        }
+        .info-row {
+          margin-bottom: 15px;
+        }
+        .info-row:last-child {
+          margin-bottom: 0;
+        }
+        .info-label {
+          font-weight: 600;
+          color: #1B3C53;
+          display: block;
+          margin-bottom: 4px;
+        }
+        .info-value {
+          color: #456882;
+          word-break: break-word;
+        }
+        .cover-letter {
+          background-color: #ffffff;
+          border: 1px solid #e9ecef;
+          border-radius: 6px;
+          padding: 15px;
+          color: #495057;
+          line-height: 1.6;
+          margin-top: 10px;
+        }
+        .cta-section {
+          text-align: center;
+          margin: 25px 0;
+        }
+        .cta-button {
+          display: inline-block;
+          background-color: #456882;
+          color: #ffffff;
+          text-decoration: none;
+          padding: 12px 24px;
+          border-radius: 6px;
+          font-weight: 500;
+          margin: 0 5px;
+        }
+        .footer { 
+          background-color: #1B3C53;
+          text-align: center; 
+          padding: 25px;
+          color: #ffffff; 
+        }
+        .footer-logo {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto 15px;
+        }
+        .footer-logo img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+        .footer p {
+          font-size: 12px;
+          opacity: 0.8;
+          margin-bottom: 8px;
+        }
+        @media (max-width: 600px) {
+          .header, .content, .footer { padding: 20px; }
+          .applicant-info { padding: 15px; }
+        }
       </style>
     </head>
     <body>
-      <div class="container">
+      <div class="email-container">
         <div class="header">
-          <h1>🎯 Lamaran Baru Diterima</h1>
-          <p>Posisi: ${applicationData.position}</p>
+          <div class="logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision Logo" />
+          </div>
+          <h1>Lamaran Kerja Baru</h1>
+          <p>Ada lamaran baru untuk posisi ${applicationData.position}</p>
         </div>
         <div class="content">
           <div class="applicant-info">
-            <h3>Informasi Pelamar:</h3>
-            <ul>
-              <li><strong>Nama:</strong> ${applicationData.fullName}</li>
-              <li><strong>Email:</strong> <a href="mailto:${
-                applicationData.email
-              }">${applicationData.email}</a></li>
-              <li><strong>Telepon:</strong> <a href="tel:${
-                applicationData.phone
-              }">${applicationData.phone}</a></li>
-              <li><strong>Pengalaman:</strong> ${
-                applicationData.experience
-              }</li>
-              ${
-                applicationData.portfolio
-                  ? `<li><strong>Portfolio:</strong> <a href="${applicationData.portfolio}" target="_blank">${applicationData.portfolio}</a></li>`
-                  : ""
-              }
-              ${
-                applicationData.resumeUrl
-                  ? `<li><strong>CV/Resume:</strong> <a href="${applicationData.resumeUrl}" target="_blank">Download CV</a></li>`
-                  : ""
-              }
-            </ul>
+            <div class="info-row">
+              <span class="info-label">Nama Lengkap:</span>
+              <span class="info-value">${applicationData.fullName}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email:</span>
+              <span class="info-value">${applicationData.email}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Telepon:</span>
+              <span class="info-value">${applicationData.phone}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Posisi:</span>
+              <span class="info-value">${applicationData.position}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Pengalaman:</span>
+              <span class="info-value">${applicationData.experience}</span>
+            </div>
+            ${applicationData.portfolio ? `
+            <div class="info-row">
+              <span class="info-label">Portfolio:</span>
+              <span class="info-value">${applicationData.portfolio}</span>
+            </div>
+            ` : ""}
+            <div class="info-row">
+              <span class="info-label">Cover Letter:</span>
+              <div class="cover-letter">
+                ${applicationData.coverLetter.replace(/\n/g, '<br>')}
+              </div>
+            </div>
           </div>
           
-          <div class="cover-letter">
-            <h3>Cover Letter:</h3>
-            <p>${applicationData.coverLetter.replace(/\n/g, "<br>")}</p>
+          <div class="cta-section">
+            <a href="mailto:${applicationData.email}" class="cta-button">Reply to Applicant</a>
+            ${applicationData.resumeUrl ? `<a href="${applicationData.resumeUrl}" class="cta-button">Download CV</a>` : ""}
           </div>
-          
-          <p><strong>Tindakan selanjutnya:</strong> Silakan tinjau lamaran ini dan hubungi pelamar untuk tahap interview jika sesuai dengan kriteria.</p>
+        </div>
+        <div class="footer">
+          <div class="footer-logo">
+            <img src="${logoBaseUrl}/logo-icon.svg" alt="Codevision" />
+          </div>
+          <p>© 2025 Codevision. Semua hak dilindungi.</p>
+          <p>Email ini dikirim dari sistem career portal.</p>
         </div>
       </div>
     </body>
     </html>
   `;
 
-  const textContent = `
-    Lamaran Baru Diterima
-    
-    Posisi: ${applicationData.position}
-    
-    Informasi Pelamar:
-    - Nama: ${applicationData.fullName}
-    - Email: ${applicationData.email}
-    - Telepon: ${applicationData.phone}
-    - Pengalaman: ${applicationData.experience}
-    ${
-      applicationData.portfolio
-        ? `- Portfolio: ${applicationData.portfolio}`
-        : ""
-    }
-    ${
-      applicationData.resumeUrl
-        ? `- CV/Resume: ${applicationData.resumeUrl}`
-        : ""
-    }
-    
-    Cover Letter:
-    ${applicationData.coverLetter}
-    
-    Tindakan selanjutnya: Silakan tinjau lamaran ini dan hubungi pelamar untuk tahap interview jika sesuai dengan kriteria.
-  `;
-
   return {
-    to: [
-      {
-        email: process.env.BREVO_ADMIN_EMAIL || "hr@codevision.com",
-        name: "HR Admin",
-      },
-    ],
-    subject: `🎯 Lamaran Baru: ${applicationData.position} - ${applicationData.fullName}`,
+    to: [{ 
+      email: process.env.BREVO_ADMIN_EMAIL || "hello@codevision.com", 
+      name: "Codevision Admin" 
+    }],
+    subject: `Lamaran Baru: ${applicationData.position} - ${applicationData.fullName}`,
     htmlContent,
-    textContent,
     replyTo: { email: applicationData.email, name: applicationData.fullName },
   };
-}
-
-// Send career application emails (both confirmation and notification)
-export async function sendCareerApplicationEmails(
-  applicationData: CareerApplicationData
-): Promise<{ applicantEmailSent: boolean; adminEmailSent: boolean }> {
-  try {
-    // Generate email templates
-    const applicantEmail = generateApplicantConfirmationEmail(applicationData);
-    const adminEmail = generateAdminNotificationEmail(applicationData);
-
-    // Send emails concurrently
-    const [applicantResult, adminResult] = await Promise.allSettled([
-      sendEmail(applicantEmail),
-      sendEmail(adminEmail),
-    ]);
-
-    const applicantEmailSent =
-      applicantResult.status === "fulfilled" && applicantResult.value;
-    const adminEmailSent =
-      adminResult.status === "fulfilled" && adminResult.value;
-
-    // Log results
-    console.log("Email sending results:", {
-      applicantEmailSent,
-      adminEmailSent,
-      applicantEmail: applicationData.email,
-      position: applicationData.position,
-    });
-
-    return {
-      applicantEmailSent,
-      adminEmailSent,
-    };
-  } catch (error) {
-    console.error("Error in sendCareerApplicationEmails:", error);
-    return {
-      applicantEmailSent: false,
-      adminEmailSent: false,
-    };
-  }
-}
-
-// Send contact form email
-export async function sendContactEmail(contactData: ContactFormData): Promise<boolean> {
-  try {
-    const htmlContent = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Pesan Kontak Baru - ${contactData.subject}</title>
-        <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-          .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
-          .contact-info { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #3498db; }
-          .message-content { background: #ecf0f1; padding: 15px; border-radius: 5px; margin: 15px 0; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>📧 Pesan Kontak Baru</h1>
-            <p>Subjek: ${contactData.subject}</p>
-          </div>
-          <div class="content">
-            <div class="contact-info">
-              <h3>Informasi Pengirim:</h3>
-              <ul>
-                <li><strong>Nama:</strong> ${contactData.name}</li>
-                <li><strong>Email:</strong> <a href="mailto:${contactData.email}">${contactData.email}</a></li>
-                <li><strong>Subjek:</strong> ${contactData.subject}</li>
-              </ul>
-            </div>
-            
-            <div class="message-content">
-              <h3>Pesan:</h3>
-              <p>${contactData.message.replace(/\n/g, "<br>")}</p>
-            </div>
-            
-            <p><strong>Tindakan selanjutnya:</strong> Silakan balas email ini untuk merespons pesan dari ${contactData.name}.</p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `;
-
-    const textContent = `
-      Pesan Kontak Baru
-      
-      Subjek: ${contactData.subject}
-      
-      Informasi Pengirim:
-      - Nama: ${contactData.name}
-      - Email: ${contactData.email}
-      - Subjek: ${contactData.subject}
-      
-      Pesan:
-      ${contactData.message}
-      
-      Tindakan selanjutnya: Silakan balas email ini untuk merespons pesan dari ${contactData.name}.
-    `;
-
-    const emailTemplate: EmailTemplate = {
-      to: [{ email: "hello@codevision.id", name: "Codevision Team" }],
-      subject: `📧 Pesan Kontak: ${contactData.subject} - ${contactData.name}`,
-      htmlContent,
-      textContent,
-      replyTo: { email: contactData.email, name: contactData.name },
-    };
-
-    const result = await sendEmail(emailTemplate);
-    console.log('Contact email sent:', result);
-    return result;
-  } catch (error) {
-    console.error('Error sending contact email:', error);
-    return false;
-  }
 }
