@@ -366,7 +366,8 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Portfolio Preview Section - Enhanced with animations */}
+      {/* TODO: Portfolio Preview Section - Coming Soon */}
+      {/* 
       <Section className="relative">
         <AnimatedBackground variant="grid" className="absolute inset-0 opacity-30">
           <div />
@@ -417,8 +418,41 @@ export default function HomePage() {
           </Reveal>
         </Container>
       </Section>
+      */}
 
-      {/* Testimonials Section - Enhanced with animations */}
+      {/* Portfolio Coming Soon Section */}
+      <Section className="relative">
+        <AnimatedBackground variant="grid" className="absolute inset-0 opacity-30">
+          <div />
+        </AnimatedBackground>
+        <Container className="relative z-10">
+          <Reveal>
+            <div className="text-center py-20">
+              <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-secondary/10">
+                <Sparkles className="h-12 w-12 text-primary animate-pulse" />
+              </div>
+              <h2 className="text-4xl font-bold text-foreground mb-6 lg:text-5xl">
+                <GradientText colors={['from-secondary', 'to-accent']}>
+                  {locale === "id" ? "Portfolio Segera Hadir" : "Portfolio Coming Soon"}
+                </GradientText>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto lg:text-2xl">
+                {locale === "id"
+                  ? "Kami sedang mempersiapkan showcase portfolio terbaik kami. Nantikan update terbaru!"
+                  : "We're preparing our best portfolio showcase. Stay tuned for updates!"}
+              </p>
+              <div className="mt-8">
+                <Badge className="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-primary/10 to-secondary/10 text-primary border-2 border-primary/20 rounded-full">
+                  {locale === "id" ? "Segera Hadir" : "Coming Soon"}
+                </Badge>
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* TODO: Testimonials Section - Coming Soon */}
+      {/* 
       <Section background="muted" className="relative overflow-hidden">
         <AnimatedBackground variant="gradient" className="absolute inset-0">
           <FloatingElements count={6} variant="triangles" />
@@ -459,6 +493,38 @@ export default function HomePage() {
               </Magnetic>
             ))}
           </Stagger>
+        </Container>
+      </Section>
+      */}
+
+      {/* Testimonials Coming Soon Section */}
+      <Section background="muted" className="relative overflow-hidden">
+        <AnimatedBackground variant="gradient" className="absolute inset-0">
+          <FloatingElements count={6} variant="triangles" />
+        </AnimatedBackground>
+        <Container className="relative z-10">
+          <Reveal>
+            <div className="text-center py-20">
+              <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-accent/10 to-primary/10">
+                <Star className="h-12 w-12 text-accent animate-pulse" />
+              </div>
+              <h2 className="text-4xl font-bold text-foreground mb-6 lg:text-5xl">
+                <GradientText colors={['from-accent', 'to-primary']}>
+                  {locale === "id" ? "Testimoni Segera Hadir" : "Testimonials Coming Soon"}
+                </GradientText>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto lg:text-2xl">
+                {locale === "id"
+                  ? "Kami sedang mengumpulkan testimoni terbaik dari klien-klien kami. Nantikan cerita sukses mereka!"
+                  : "We're collecting the best testimonials from our clients. Stay tuned for their success stories!"}
+              </p>
+              <div className="mt-8">
+                <Badge className="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-accent/10 to-primary/10 text-accent border-2 border-accent/20 rounded-full">
+                  {locale === "id" ? "Segera Hadir" : "Coming Soon"}
+                </Badge>
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 

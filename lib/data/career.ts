@@ -148,6 +148,8 @@ export const careerData: CareerData = {
     }
   ],
   positions: [
+    // TODO: Full-time positions - Coming Soon
+    /*
     {
       id: 'senior-fullstack-developer',
       title: {
@@ -388,6 +390,7 @@ export const careerData: CareerData = {
       posted: '2024-01-08',
       featured: true
     },
+    */
     {
       id: 'frontend-developer-intern',
       title: {

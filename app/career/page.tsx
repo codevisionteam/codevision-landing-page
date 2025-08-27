@@ -232,7 +232,8 @@ const extendedJobs = [
 export default function CareerPage() {
   const { t, locale } = useI18n()
   const { toast } = useToast()
-  const [selectedLevel, setSelectedLevel] = useState("all")
+  // Default to intern level to prioritize internship positions
+  const [selectedLevel, setSelectedLevel] = useState("intern")
   const [selectedType, setSelectedType] = useState("all")
   const [selectedFunction, setSelectedFunction] = useState("all")
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -249,6 +250,11 @@ export default function CareerPage() {
   })
 
   const filteredJobs = extendedJobs.filter((job) => {
+    // Hide full-time positions by default unless specifically selected
+    if (job.type === "full-time" && selectedType === "all" && selectedLevel !== "all") {
+      return false
+    }
+    
     const levelMatch = selectedLevel === "all" || job.level === selectedLevel
     const typeMatch = selectedType === "all" || job.type === selectedType
     const functionMatch = selectedFunction === "all" || job.function === selectedFunction
@@ -256,7 +262,8 @@ export default function CareerPage() {
   })
 
   const clearFilters = () => {
-    setSelectedLevel("all")
+    // Reset to intern level to prioritize internships
+    setSelectedLevel("intern")
     setSelectedType("all")
     setSelectedFunction("all")
   }
@@ -453,7 +460,7 @@ export default function CareerPage() {
               </div>
 
               <div className="flex items-center gap-4">
-                {(selectedLevel !== "all" || selectedType !== "all" || selectedFunction !== "all") && (
+                {(selectedLevel !== "intern" || selectedType !== "all" || selectedFunction !== "all") && (
                   <Magnetic strength={0.1}>
                     <Button
                       variant="outline"
