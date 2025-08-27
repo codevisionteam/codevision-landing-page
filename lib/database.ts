@@ -290,6 +290,38 @@ export class CareerApplicationDB {
       return { data: null, error };
     }
   }
+
+  // Update file information for an application
+  static async updateFileInfo(
+    id: string,
+    fileInfo: {
+      cv_file_url?: string;
+      cv_file_size?: number;
+      cv_file_type?: string;
+      cv_file_path?: string;
+    }
+  ): Promise<{ data: CareerApplication | null; error: any }> {
+    if (!supabase) {
+      return { data: null, error: new Error("Database not available") };
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("career_applications")
+        .update({
+          ...fileInfo,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", id)
+        .select()
+        .single();
+
+      return { data, error };
+    } catch (error) {
+      console.error("Error updating file info:", error);
+      return { data: null, error };
+    }
+  }
 }
 
 // Application logs operations

@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS career_applications (
   cv_file_url VARCHAR(500),
   cv_file_size INTEGER,
   cv_file_type VARCHAR(100),
+  cv_file_path VARCHAR(500),
   status VARCHAR(50) DEFAULT 'pending' CHECK (status IN ('pending', 'reviewing', 'interview', 'accepted', 'rejected')),
   applied_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   reviewed_at TIMESTAMP WITH TIME ZONE,

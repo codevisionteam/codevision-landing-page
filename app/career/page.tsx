@@ -279,6 +279,14 @@ export default function CareerPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
+    // Show loading toast
+    const loadingToast = toast({
+      title: locale === "id" ? "Mengirim Lamaran..." : "Sending Application...",
+      description: locale === "id" 
+        ? "Mohon tunggu, lamaran Anda sedang diproses."
+        : "Please wait, your application is being processed.",
+    })
+
     try {
       // Debug: Log application data before sending
       console.log('Application data before sending:', {
@@ -337,10 +345,43 @@ export default function CareerPage() {
         setSelectedJob(null)
       } else {
         console.error('API Error Response:', result)
+        
+        // Handle different error types
+        let errorTitle = locale === "id" ? "Gagal Mengirim Lamaran" : "Failed to Send Application"
+        let errorDescription = locale === "id" 
+          ? "Terjadi kesalahan saat mengirim lamaran. Silakan coba lagi."
+          : "An error occurred while sending your application. Please try again."
+        
+        if (result.code === 'RATE_LIMIT_EXCEEDED') {
+          errorTitle = locale === "id" ? "Terlalu Banyak Percobaan" : "Too Many Attempts"
+          errorDescription = locale === "id" 
+            ? "Anda telah mencoba terlalu sering. Silakan tunggu beberapa menit."
+            : "You have tried too many times. Please wait a few minutes."
+        } else if (result.code === 'EMAIL_SERVICE_UNAVAILABLE') {
+          errorTitle = locale === "id" ? "Layanan Email Tidak Tersedia" : "Email Service Unavailable"
+          errorDescription = locale === "id" 
+            ? "Layanan email sedang bermasalah. Silakan coba lagi nanti."
+            : "Email service is currently unavailable. Please try again later."
+        } else if (result.code === 'EMAIL_SEND_FAILED') {
+          errorTitle = locale === "id" ? "Email Gagal Terkirim" : "Email Failed to Send"
+          errorDescription = locale === "id" 
+            ? "Lamaran tersimpan tapi email konfirmasi gagal terkirim. Tim kami akan menghubungi Anda."
+            : "Application saved but confirmation email failed to send. Our team will contact you."
+        }
+        
+        toast({
+          title: errorTitle,
+          description: result.error || errorDescription,
+          variant: "destructive",
+        })
+        
         throw new Error(result.error || 'Failed to submit application')
       }
     } catch (error) {
       console.error('Error submitting application:', error)
+      
+      // Dismiss loading toast
+      loadingToast.dismiss()
       
       // Show more specific error message if available
       let errorMessage = locale === "id" 
@@ -368,34 +409,43 @@ export default function CareerPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      // Check file size (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
+      // Check file type first
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+      if (!allowedTypes.includes(file.type)) {
         toast({
-          title: locale === "id" ? "File Terlalu Besar" : "File Too Large",
+          title: locale === "id" ? "Format File Tidak Valid" : "Invalid File Format",
           description:
             locale === "id"
-              ? "Ukuran file maksimal 5MB"
-              : "Maximum file size is 5MB",
+              ? "Silakan upload file PDF, DOC, atau DOCX"
+              : "Please upload PDF, DOC, or DOCX files only",
           variant: "destructive",
         })
         return
       }
 
-      // Check file type
-      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
-      if (!allowedTypes.includes(file.type)) {
+      // Check file size (max 2MB for better performance)
+      if (file.size > 2 * 1024 * 1024) {
         toast({
-          title: locale === "id" ? "Format File Tidak Didukung" : "Unsupported File Format",
+          title: locale === "id" ? "File Terlalu Besar" : "File Too Large",
           description:
             locale === "id"
-              ? "Hanya file PDF dan DOC/DOCX yang diperbolehkan"
-              : "Only PDF and DOC/DOCX files are allowed",
+              ? "Ukuran file maksimal 2MB"
+              : "Maximum file size is 2MB",
           variant: "destructive",
         })
         return
       }
 
       handleInputChange('cv', file)
+      
+      // Show success toast for valid file
+      toast({
+        title: locale === "id" ? "File Berhasil Dipilih" : "File Selected Successfully",
+        description:
+          locale === "id"
+            ? `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`
+            : `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`,
+      })
     }
   }
 
@@ -854,8 +904,8 @@ export default function CareerPage() {
                       </p>
                       <p className="text-xs text-muted-foreground">
                         {locale === "id" 
-                          ? "PDF, DOC, DOCX (Maks. 5MB)"
-                          : "PDF, DOC, DOCX (Max. 5MB)"}
+                          ? "PDF, DOC, DOCX (Maks. 2MB)"
+                          : "PDF, DOC, DOCX (Max. 2MB)"}
                       </p>
                     </div>
                   ) : (

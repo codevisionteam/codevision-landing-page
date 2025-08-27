@@ -142,12 +142,12 @@ export async function POST(request: NextRequest) {
     // Validate CV file if provided
     let cvAttachment: { name: string; content: Buffer; contentType: string } | undefined;
     if (cvFile && cvFile.size > 0) {
-      // Check file size (max 5MB)
-      if (cvFile.size > 5 * 1024 * 1024) {
+      // Check file size (max 2MB)
+      if (cvFile.size > 2 * 1024 * 1024) {
         return NextResponse.json(
           {
             success: false,
-            error: 'CV file size must be maximum 5MB',
+            error: 'CV file size must be maximum 2MB',
             code: 'FILE_TOO_LARGE'
           },
           { status: 400 }
@@ -230,6 +230,20 @@ export async function POST(request: NextRequest) {
             } else if (uploadData) {
               cvFileUrl = uploadData.url;
               console.log('CV file uploaded successfully:', cvFileUrl);
+              
+              // Update file information in database
+              const { error: updateError } = await CareerApplicationDB.updateFileInfo(savedApplication.id, {
+                cv_file_url: uploadData.url,
+                cv_file_size: cvFile.size,
+                cv_file_type: cvFile.type,
+                cv_file_path: uploadData.path
+              });
+              
+              if (updateError) {
+                console.error('Failed to update file info in database:', updateError);
+              } else {
+                console.log('File info updated successfully in database');
+              }
             }
           }
 
