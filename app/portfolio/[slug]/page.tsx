@@ -35,7 +35,7 @@ const portfolioDetails = {
     },
     image: "/placeholder.svg?height=400&width=800",
     technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
-    year: 2024,
+    year: 2025,
     duration: "6 months",
     teamSize: 8,
     challenge: {
@@ -80,7 +80,7 @@ const portfolioDetails = {
     },
     image: "/placeholder.svg?height=400&width=800",
     technologies: ["React Native", "Node.js", "MongoDB", "AWS"],
-    year: 2024,
+    year: 2025,
     duration: "8 months",
     teamSize: 12,
     challenge: {
@@ -206,7 +206,7 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
         <AnimatedBackground variant="gradient" className="absolute inset-0">
           <FloatingElements count={8} variant="circles" />
         </AnimatedBackground>
-        
+
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5" />
 
         <Container className="relative z-10">
@@ -238,8 +238,8 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
 
                 <Reveal delay={0.6}>
                   <h1 className="text-5xl font-black text-foreground mb-6 lg:text-6xl">
-                    <GradientText 
-                      colors={['from-primary', 'via-secondary', 'to-accent']} 
+                    <GradientText
+                      colors={['from-primary', 'via-secondary', 'to-accent']}
                       animated
                       className="leading-tight"
                     >
@@ -369,7 +369,7 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
         <AnimatedBackground variant="mesh" className="absolute inset-0 opacity-30">
           <div />
         </AnimatedBackground>
-        
+
         <Container className="relative z-10">
           <Stagger className="grid grid-cols-1 lg:grid-cols-3 gap-8" staggerDelay={0.2}>
             {/* Challenge */}
@@ -466,7 +466,7 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
                 </GradientText>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                {locale === "id" 
+                {locale === "id"
                   ? "Fitur-fitur unggulan yang membuat proyek ini istimewa dan memberikan nilai tambah bagi klien"
                   : "Outstanding features that make this project special and provide added value for clients"}
               </p>
@@ -499,7 +499,7 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
         <AnimatedBackground variant="gradient" className="absolute inset-0">
           <FloatingElements count={6} variant="triangles" />
         </AnimatedBackground>
-        
+
         <Container className="relative z-10">
           <Reveal>
             <div className="text-center max-w-4xl mx-auto">

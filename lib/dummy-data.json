@@ -74,7 +74,7 @@
       },
       "image": "/placeholder.svg?height=300&width=400&text=E-Commerce+Platform",
       "technologies": ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
-      "year": 2024
+      "year": 2025
     },
     {
       "id": "mobile-banking",
@@ -88,7 +88,7 @@
       },
       "image": "/placeholder.svg?height=300&width=400&text=Mobile+Banking+App",
       "technologies": ["React Native", "Node.js", "MongoDB", "JWT"],
-      "year": 2024
+      "year": 2025
     },
     {
       "id": "hr-management",
@@ -141,13 +141,13 @@
       "level": "mid",
       "type": "full-time",
       "function": "engineering",
-      "location": "Jakarta",
+      "location": "WFH",
       "description": {
         "id": "Bergabunglah dengan tim kami untuk mengembangkan antarmuka web yang menakjubkan",
         "en": "Join our team to develop amazing web interfaces"
       },
       "requirements": ["React", "TypeScript", "Tailwind CSS", "Next.js"],
-      "posted": "2024-01-15"
+      "posted": "2025-01-15"
     },
     {
       "id": "backend-developer",
@@ -158,13 +158,13 @@
       "level": "senior",
       "type": "full-time",
       "function": "engineering",
-      "location": "Jakarta",
+      "location": "WFH",
       "description": {
         "id": "Kembangkan sistem backend yang robust dan scalable",
         "en": "Develop robust and scalable backend systems"
       },
       "requirements": ["Node.js", "PostgreSQL", "Docker", "AWS"],
-      "posted": "2024-01-10"
+      "posted": "2025-01-10"
     }
   ],
   "faqs": [

@@ -1,4 +1,4 @@
-import * as brevo from '@getbrevo/brevo';
+import * as brevo from "@getbrevo/brevo";
 
 // Initialize Brevo API instance
 const apiInstance = new brevo.TransactionalEmailsApi();
@@ -6,7 +6,7 @@ const apiInstance = new brevo.TransactionalEmailsApi();
 // Set API key
 apiInstance.setApiKey(
   brevo.TransactionalEmailsApiApiKeys.apiKey,
-  process.env.BREVO_API_KEY || ''
+  process.env.BREVO_API_KEY || ""
 );
 
 export interface EmailTemplate {
@@ -33,30 +33,30 @@ export interface CareerApplicationData {
 
 // Default sender configuration
 const defaultSender = {
-  email: process.env.BREVO_SENDER_EMAIL || 'hello@codevision.com',
-  name: process.env.BREVO_SENDER_NAME || 'Codevision'
+  email: process.env.BREVO_SENDER_EMAIL || "hello@codevision.com",
+  name: process.env.BREVO_SENDER_NAME || "Codevision",
 };
 
 // Send email function
 export async function sendEmail(emailData: EmailTemplate): Promise<boolean> {
   try {
     const sendSmtpEmail = new brevo.SendSmtpEmail();
-    
+
     sendSmtpEmail.to = emailData.to;
     sendSmtpEmail.subject = emailData.subject;
     sendSmtpEmail.htmlContent = emailData.htmlContent;
     sendSmtpEmail.textContent = emailData.textContent;
     sendSmtpEmail.sender = emailData.sender || defaultSender;
-    
+
     if (emailData.replyTo) {
       sendSmtpEmail.replyTo = emailData.replyTo;
     }
 
     const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
-    console.log('Email sent successfully:', result.response?.statusCode);
+    console.log("Email sent successfully:", result.response?.statusCode);
     return true;
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     return false;
   }
 }
@@ -88,7 +88,9 @@ export function generateApplicantConfirmationEmail(
         <div class="content">
           <p>Halo <strong>${applicationData.fullName}</strong>,</p>
           
-          <p>Terima kasih telah melamar untuk posisi <strong>${applicationData.position}</strong> di Codevision. Kami telah menerima lamaran Anda dan akan segera meninjau aplikasi Anda.</p>
+          <p>Terima kasih telah melamar untuk posisi <strong>${
+            applicationData.position
+          }</strong> di Codevision. Kami telah menerima lamaran Anda dan akan segera meninjau aplikasi Anda.</p>
           
           <div class="highlight">
             <h3>Detail Lamaran Anda:</h3>
@@ -96,8 +98,14 @@ export function generateApplicantConfirmationEmail(
               <li><strong>Posisi:</strong> ${applicationData.position}</li>
               <li><strong>Email:</strong> ${applicationData.email}</li>
               <li><strong>Telepon:</strong> ${applicationData.phone}</li>
-              <li><strong>Pengalaman:</strong> ${applicationData.experience}</li>
-              ${applicationData.portfolio ? `<li><strong>Portfolio:</strong> <a href="${applicationData.portfolio}">${applicationData.portfolio}</a></li>` : ''}
+              <li><strong>Pengalaman:</strong> ${
+                applicationData.experience
+              }</li>
+              ${
+                applicationData.portfolio
+                  ? `<li><strong>Portfolio:</strong> <a href="${applicationData.portfolio}">${applicationData.portfolio}</a></li>`
+                  : ""
+              }
             </ul>
           </div>
           
@@ -108,7 +116,7 @@ export function generateApplicantConfirmationEmail(
           <p>Salam hangat,<br><strong>Tim HR Codevision</strong></p>
         </div>
         <div class="footer">
-          <p>© 2024 Codevision. Semua hak dilindungi.</p>
+          <p>© 2025 Codevision. Semua hak dilindungi.</p>
         </div>
       </div>
     </body>
@@ -120,14 +128,20 @@ export function generateApplicantConfirmationEmail(
     
     Halo ${applicationData.fullName},
     
-    Terima kasih telah melamar untuk posisi ${applicationData.position} di Codevision. Kami telah menerima lamaran Anda dan akan segera meninjau aplikasi Anda.
+    Terima kasih telah melamar untuk posisi ${
+      applicationData.position
+    } di Codevision. Kami telah menerima lamaran Anda dan akan segera meninjau aplikasi Anda.
     
     Detail Lamaran Anda:
     - Posisi: ${applicationData.position}
     - Email: ${applicationData.email}
     - Telepon: ${applicationData.phone}
     - Pengalaman: ${applicationData.experience}
-    ${applicationData.portfolio ? `- Portfolio: ${applicationData.portfolio}` : ''}
+    ${
+      applicationData.portfolio
+        ? `- Portfolio: ${applicationData.portfolio}`
+        : ""
+    }
     
     Tim HR kami akan menghubungi Anda dalam 1-2 hari kerja untuk tahap selanjutnya.
     
@@ -140,7 +154,10 @@ export function generateApplicantConfirmationEmail(
     subject: `Konfirmasi Lamaran - ${applicationData.position} di Codevision`,
     htmlContent,
     textContent,
-    replyTo: { email: process.env.BREVO_ADMIN_EMAIL || 'hr@codevision.com', name: 'HR Codevision' }
+    replyTo: {
+      email: process.env.BREVO_ADMIN_EMAIL || "hr@codevision.com",
+      name: "HR Codevision",
+    },
   };
 }
 
@@ -174,17 +191,31 @@ export function generateAdminNotificationEmail(
             <h3>Informasi Pelamar:</h3>
             <ul>
               <li><strong>Nama:</strong> ${applicationData.fullName}</li>
-              <li><strong>Email:</strong> <a href="mailto:${applicationData.email}">${applicationData.email}</a></li>
-              <li><strong>Telepon:</strong> <a href="tel:${applicationData.phone}">${applicationData.phone}</a></li>
-              <li><strong>Pengalaman:</strong> ${applicationData.experience}</li>
-              ${applicationData.portfolio ? `<li><strong>Portfolio:</strong> <a href="${applicationData.portfolio}" target="_blank">${applicationData.portfolio}</a></li>` : ''}
-              ${applicationData.resumeUrl ? `<li><strong>CV/Resume:</strong> <a href="${applicationData.resumeUrl}" target="_blank">Download CV</a></li>` : ''}
+              <li><strong>Email:</strong> <a href="mailto:${
+                applicationData.email
+              }">${applicationData.email}</a></li>
+              <li><strong>Telepon:</strong> <a href="tel:${
+                applicationData.phone
+              }">${applicationData.phone}</a></li>
+              <li><strong>Pengalaman:</strong> ${
+                applicationData.experience
+              }</li>
+              ${
+                applicationData.portfolio
+                  ? `<li><strong>Portfolio:</strong> <a href="${applicationData.portfolio}" target="_blank">${applicationData.portfolio}</a></li>`
+                  : ""
+              }
+              ${
+                applicationData.resumeUrl
+                  ? `<li><strong>CV/Resume:</strong> <a href="${applicationData.resumeUrl}" target="_blank">Download CV</a></li>`
+                  : ""
+              }
             </ul>
           </div>
           
           <div class="cover-letter">
             <h3>Cover Letter:</h3>
-            <p>${applicationData.coverLetter.replace(/\n/g, '<br>')}</p>
+            <p>${applicationData.coverLetter.replace(/\n/g, "<br>")}</p>
           </div>
           
           <p><strong>Tindakan selanjutnya:</strong> Silakan tinjau lamaran ini dan hubungi pelamar untuk tahap interview jika sesuai dengan kriteria.</p>
@@ -204,8 +235,16 @@ export function generateAdminNotificationEmail(
     - Email: ${applicationData.email}
     - Telepon: ${applicationData.phone}
     - Pengalaman: ${applicationData.experience}
-    ${applicationData.portfolio ? `- Portfolio: ${applicationData.portfolio}` : ''}
-    ${applicationData.resumeUrl ? `- CV/Resume: ${applicationData.resumeUrl}` : ''}
+    ${
+      applicationData.portfolio
+        ? `- Portfolio: ${applicationData.portfolio}`
+        : ""
+    }
+    ${
+      applicationData.resumeUrl
+        ? `- CV/Resume: ${applicationData.resumeUrl}`
+        : ""
+    }
     
     Cover Letter:
     ${applicationData.coverLetter}
@@ -214,11 +253,16 @@ export function generateAdminNotificationEmail(
   `;
 
   return {
-    to: [{ email: process.env.BREVO_ADMIN_EMAIL || 'hr@codevision.com', name: 'HR Admin' }],
+    to: [
+      {
+        email: process.env.BREVO_ADMIN_EMAIL || "hr@codevision.com",
+        name: "HR Admin",
+      },
+    ],
     subject: `🎯 Lamaran Baru: ${applicationData.position} - ${applicationData.fullName}`,
     htmlContent,
     textContent,
-    replyTo: { email: applicationData.email, name: applicationData.fullName }
+    replyTo: { email: applicationData.email, name: applicationData.fullName },
   };
 }
 
@@ -234,29 +278,31 @@ export async function sendCareerApplicationEmails(
     // Send emails concurrently
     const [applicantResult, adminResult] = await Promise.allSettled([
       sendEmail(applicantEmail),
-      sendEmail(adminEmail)
+      sendEmail(adminEmail),
     ]);
 
-    const applicantEmailSent = applicantResult.status === 'fulfilled' && applicantResult.value;
-    const adminEmailSent = adminResult.status === 'fulfilled' && adminResult.value;
+    const applicantEmailSent =
+      applicantResult.status === "fulfilled" && applicantResult.value;
+    const adminEmailSent =
+      adminResult.status === "fulfilled" && adminResult.value;
 
     // Log results
-    console.log('Email sending results:', {
+    console.log("Email sending results:", {
       applicantEmailSent,
       adminEmailSent,
       applicantEmail: applicationData.email,
-      position: applicationData.position
+      position: applicationData.position,
     });
 
     return {
       applicantEmailSent,
-      adminEmailSent
+      adminEmailSent,
     };
   } catch (error) {
-    console.error('Error in sendCareerApplicationEmails:', error);
+    console.error("Error in sendCareerApplicationEmails:", error);
     return {
       applicantEmailSent: false,
-      adminEmailSent: false
+      adminEmailSent: false,
     };
   }
 }

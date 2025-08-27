@@ -65,7 +65,7 @@ export function JobCard({
           </div>
           <div className="flex items-center space-x-1">
             <Calendar className="h-4 w-4" />
-            <span>{new Date(posted).toLocaleDateString()}</span>
+            <span>{posted}</span>
           </div>
         </div>
       </CardHeader>

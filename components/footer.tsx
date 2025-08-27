@@ -113,7 +113,7 @@ export function Footer() {
           <div className="mt-8 pt-8 border-t border-border">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-sm text-muted-foreground">
-                © 2024 Codevision. {t("footer.copyright")}
+                © 2025 Codevision. {t("footer.copyright")}
               </p>
               <div className="flex space-x-6">
                 <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">

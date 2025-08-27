@@ -70,7 +70,7 @@ export default function PortfolioPage() {
       },
       image: "/placeholder.svg?height=300&width=400",
       technologies: ["React Native", "Firebase", "WebRTC", "Stripe"],
-      year: 2024,
+      year: 2025,
     },
     {
       id: "inventory-system",
@@ -108,7 +108,7 @@ export default function PortfolioPage() {
         <AnimatedBackground variant="gradient" className="absolute inset-0">
           <FloatingElements count={10} variant="circles" />
         </AnimatedBackground>
-        
+
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary),0.1)_0%,transparent_50%)]" />
 
@@ -125,8 +125,8 @@ export default function PortfolioPage() {
 
             <Reveal delay={0.4}>
               <h1 className="text-5xl font-black text-foreground mb-8 lg:text-6xl xl:text-7xl">
-                <GradientText 
-                  colors={['from-primary', 'via-secondary', 'to-accent']} 
+                <GradientText
+                  colors={['from-primary', 'via-secondary', 'to-accent']}
                   animated
                   className="leading-tight"
                 >
@@ -174,7 +174,7 @@ export default function PortfolioPage() {
         <AnimatedBackground variant="dots" className="absolute inset-0 opacity-30">
           <div />
         </AnimatedBackground>
-        
+
         <Container className="relative z-10">
           <Reveal>
             <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/30 shadow-xl">
@@ -276,7 +276,7 @@ export default function PortfolioPage() {
                       : "Try changing the filters or reset to see all projects"}
                   </p>
                   <Magnetic strength={0.2}>
-                    <Button 
+                    <Button
                       onClick={clearFilters}
                       size="lg"
                       className="px-8 py-4 rounded-full"

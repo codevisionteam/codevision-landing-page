@@ -20,6 +20,7 @@ import { JobCard } from "@/components/job-card"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useI18n } from "@/components/i18n-provider"
 import { useToast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 import dummyData from "@/lib/dummy-data.json"
 
 // Import stunning UI components
@@ -120,13 +121,13 @@ const extendedJobs = [
     level: "intern",
     type: "internship",
     function: "engineering",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Bergabunglah dengan tim mobile development kami untuk mengembangkan aplikasi Flutter yang menakjubkan",
       en: "Join our mobile development team to build amazing Flutter applications",
     },
     requirements: ["Flutter", "Dart", "Firebase", "Git", "RESTful API"],
-    posted: "2024-01-15",
+    posted: "2025-01-15",
   },
   {
     id: "frontend-developer-intern",
@@ -134,13 +135,13 @@ const extendedJobs = [
     level: "intern",
     type: "internship",
     function: "engineering",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Kembangkan antarmuka web modern menggunakan Next.js dan teknologi front-end terkini",
       en: "Develop modern web interfaces using Next.js and cutting-edge front-end technologies",
     },
     requirements: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Git"],
-    posted: "2024-01-15",
+    posted: "2025-01-15",
   },
   {
     id: "backend-developer-intern",
@@ -148,13 +149,13 @@ const extendedJobs = [
     level: "intern",
     type: "internship",
     function: "engineering",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Bangun API yang robust dan scalable menggunakan NestJS dan teknologi backend modern",
       en: "Build robust and scalable APIs using NestJS and modern backend technologies",
     },
     requirements: ["NestJS", "Node.js", "TypeScript", "PostgreSQL", "Docker"],
-    posted: "2024-01-15",
+    posted: "2025-01-15",
   },
   {
     id: "uiux-designer-intern",
@@ -162,13 +163,13 @@ const extendedJobs = [
     level: "intern",
     type: "internship",
     function: "design",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Ciptakan desain yang user-friendly dan estetis untuk produk digital kami",
       en: "Create user-friendly and aesthetic designs for our digital products",
     },
     requirements: ["Figma", "Adobe Creative Suite", "Prototyping", "Design Thinking", "User Research"],
-    posted: "2024-01-15",
+    posted: "2025-01-15",
   },
   {
     id: "content-creator-intern",
@@ -176,13 +177,13 @@ const extendedJobs = [
     level: "intern",
     type: "internship",
     function: "content",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Buat konten menarik untuk media sosial dan platform digital perusahaan",
       en: "Create engaging content for company's social media and digital platforms",
     },
     requirements: ["Social Media Management", "Content Writing", "Adobe Creative Suite", "Video Editing", "SEO"],
-    posted: "2024-01-15",
+    posted: "2025-01-15",
   },
   // Regular Positions
   {
@@ -191,13 +192,13 @@ const extendedJobs = [
     level: "mid",
     type: "full-time",
     function: "design",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Desain pengalaman pengguna yang luar biasa untuk produk digital kami",
       en: "Design exceptional user experiences for our digital products",
     },
     requirements: ["Figma", "Adobe Creative Suite", "Prototyping", "User Research"],
-    posted: "2024-01-12",
+    posted: "2025-01-12",
   },
   {
     id: "product-manager",
@@ -205,13 +206,13 @@ const extendedJobs = [
     level: "senior",
     type: "full-time",
     function: "product",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Memimpin pengembangan produk dari konsep hingga peluncuran",
       en: "Lead product development from concept to launch",
     },
     requirements: ["Product Strategy", "Agile", "Analytics", "Stakeholder Management"],
-    posted: "2024-01-08",
+    posted: "2025-01-08",
   },
   {
     id: "devops-engineer",
@@ -219,13 +220,13 @@ const extendedJobs = [
     level: "mid",
     type: "full-time",
     function: "engineering",
-    location: "Jakarta",
+    location: "WFH",
     description: {
       id: "Kelola infrastruktur cloud dan pipeline CI/CD",
       en: "Manage cloud infrastructure and CI/CD pipelines",
     },
     requirements: ["AWS", "Docker", "Kubernetes", "Terraform"],
-    posted: "2024-01-05",
+    posted: "2025-01-05",
   },
 ]
 
@@ -256,7 +257,7 @@ export default function CareerPage() {
     if (job.type === "full-time" && selectedType === "all" && selectedLevel !== "all") {
       return false
     }
-    
+
     const levelMatch = selectedLevel === "all" || job.level === selectedLevel
     const typeMatch = selectedType === "all" || job.type === selectedType
     const functionMatch = selectedFunction === "all" || job.function === selectedFunction
@@ -282,7 +283,7 @@ export default function CareerPage() {
     // Show loading toast
     const loadingToast = toast({
       title: locale === "id" ? "Mengirim Lamaran..." : "Sending Application...",
-      description: locale === "id" 
+      description: locale === "id"
         ? "Mohon tunggu, lamaran Anda sedang diproses."
         : "Please wait, your application is being processed.",
     })
@@ -309,7 +310,7 @@ export default function CareerPage() {
       formData.append('portfolio', applicationData.portfolio)
       formData.append('coverLetter', applicationData.coverLetter)
       formData.append('position', selectedJob || '')
-      
+
       if (applicationData.cv) {
         formData.append('cv', applicationData.cv)
       }
@@ -345,53 +346,53 @@ export default function CareerPage() {
         setSelectedJob(null)
       } else {
         console.error('API Error Response:', result)
-        
+
         // Handle different error types
         let errorTitle = locale === "id" ? "Gagal Mengirim Lamaran" : "Failed to Send Application"
-        let errorDescription = locale === "id" 
+        let errorDescription = locale === "id"
           ? "Terjadi kesalahan saat mengirim lamaran. Silakan coba lagi."
           : "An error occurred while sending your application. Please try again."
-        
+
         if (result.code === 'RATE_LIMIT_EXCEEDED') {
           errorTitle = locale === "id" ? "Terlalu Banyak Percobaan" : "Too Many Attempts"
-          errorDescription = locale === "id" 
+          errorDescription = locale === "id"
             ? "Anda telah mencoba terlalu sering. Silakan tunggu beberapa menit."
             : "You have tried too many times. Please wait a few minutes."
         } else if (result.code === 'EMAIL_SERVICE_UNAVAILABLE') {
           errorTitle = locale === "id" ? "Layanan Email Tidak Tersedia" : "Email Service Unavailable"
-          errorDescription = locale === "id" 
+          errorDescription = locale === "id"
             ? "Layanan email sedang bermasalah. Silakan coba lagi nanti."
             : "Email service is currently unavailable. Please try again later."
         } else if (result.code === 'EMAIL_SEND_FAILED') {
           errorTitle = locale === "id" ? "Email Gagal Terkirim" : "Email Failed to Send"
-          errorDescription = locale === "id" 
+          errorDescription = locale === "id"
             ? "Lamaran tersimpan tapi email konfirmasi gagal terkirim. Tim kami akan menghubungi Anda."
             : "Application saved but confirmation email failed to send. Our team will contact you."
         }
-        
+
         toast({
           title: errorTitle,
           description: result.error || errorDescription,
           variant: "destructive",
         })
-        
+
         throw new Error(result.error || 'Failed to submit application')
       }
     } catch (error) {
       console.error('Error submitting application:', error)
-      
+
       // Dismiss loading toast
       loadingToast.dismiss()
-      
+
       // Show more specific error message if available
-      let errorMessage = locale === "id" 
+      let errorMessage = locale === "id"
         ? "Terjadi kesalahan saat mengirim lamaran. Silakan coba lagi."
         : "An error occurred while sending your application. Please try again."
-      
+
       if (error instanceof Error && error.message !== 'Failed to submit application') {
         errorMessage = error.message
       }
-      
+
       toast({
         title: locale === "id" ? "Gagal Mengirim" : "Failed to Send",
         description: errorMessage,
@@ -437,7 +438,7 @@ export default function CareerPage() {
       }
 
       handleInputChange('cv', file)
-      
+
       // Show success toast for valid file
       toast({
         title: locale === "id" ? "File Berhasil Dipilih" : "File Selected Successfully",
@@ -465,7 +466,7 @@ export default function CareerPage() {
         <AnimatedBackground variant="gradient" className="absolute inset-0">
           <FloatingElements count={12} variant="circles" />
         </AnimatedBackground>
-        
+
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary),0.1)_0%,transparent_50%)]" />
 
@@ -482,8 +483,8 @@ export default function CareerPage() {
 
             <Reveal delay={0.4}>
               <h1 className="text-5xl font-black text-foreground mb-8 lg:text-6xl xl:text-7xl">
-                <GradientText 
-                  colors={['from-primary', 'via-secondary', 'to-accent']} 
+                <GradientText
+                  colors={['from-primary', 'via-secondary', 'to-accent']}
                   animated
                   className="leading-tight"
                 >
@@ -554,7 +555,7 @@ export default function CareerPage() {
         <AnimatedBackground variant="dots" className="absolute inset-0 opacity-20">
           <div />
         </AnimatedBackground>
-        
+
         <Container className="relative z-10">
           <Reveal>
             <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/30 shadow-xl">
@@ -728,7 +729,7 @@ export default function CareerPage() {
                       : "Try changing the filters or reset to see all positions"}
                   </p>
                   <Magnetic strength={0.2}>
-                    <Button 
+                    <Button
                       onClick={clearFilters}
                       size="lg"
                       className="px-8 py-4 rounded-full"
@@ -748,7 +749,7 @@ export default function CareerPage() {
         <AnimatedBackground variant="mesh" className="absolute inset-0 opacity-30">
           <div />
         </AnimatedBackground>
-        
+
         <Container className="relative z-10">
           <Reveal>
             <div className="text-center mb-16">
@@ -791,7 +792,7 @@ export default function CareerPage() {
 
       {/* Application Dialog */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-md rounded-2xl">
+        <DialogContent className="max-w-md w-[95vw] max-h-[90vh] overflow-y-auto rounded-2xl mx-4 sm:mx-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center">
               {locale === "id" ? "Lamar Posisi" : "Apply for Position"}
@@ -803,8 +804,8 @@ export default function CareerPage() {
             </DialogDescription>
           </DialogHeader>
 
-          <form onSubmit={handleSubmitApplication} className="space-y-6">
-            <div className="space-y-4">
+          <form onSubmit={handleSubmitApplication} className="space-y-4 sm:space-y-6">
+            <div className="space-y-3 sm:space-y-4">
               <div>
                 <Label htmlFor="name">{locale === "id" ? "Nama Lengkap" : "Full Name"}</Label>
                 <Input
@@ -865,7 +866,7 @@ export default function CareerPage() {
                 />
                 {applicationData.experience.length > 0 && applicationData.experience.length < 10 && (
                   <p className="text-xs text-red-500 mt-1">
-                    {locale === "id" 
+                    {locale === "id"
                       ? `${10 - applicationData.experience.length} karakter lagi diperlukan`
                       : `${10 - applicationData.experience.length} more characters needed`}
                   </p>
@@ -894,16 +895,16 @@ export default function CareerPage() {
                   {!applicationData.cv ? (
                     <div
                       onClick={() => fileInputRef.current?.click()}
-                      className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-muted/50 transition-colors"
+                      className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-4 sm:p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-muted/50 transition-colors"
                     >
-                      <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                      <Upload className="h-6 w-6 sm:h-8 sm:w-8 text-muted-foreground mx-auto mb-2" />
                       <p className="text-sm text-muted-foreground mb-1">
-                        {locale === "id" 
+                        {locale === "id"
                           ? "Klik untuk upload CV/Resume"
                           : "Click to upload CV/Resume"}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {locale === "id" 
+                        {locale === "id"
                           ? "PDF, DOC, DOCX (Maks. 2MB)"
                           : "PDF, DOC, DOCX (Max. 2MB)"}
                       </p>
@@ -954,7 +955,7 @@ export default function CareerPage() {
                   minLength={50}
                   value={applicationData.coverLetter}
                   onChange={(e) => handleInputChange("coverLetter", e.target.value)}
-                  className="mt-1"
+                  className="mt-1 min-h-[80px] sm:min-h-[120px] resize-none"
                   rows={4}
                   placeholder={
                     locale === "id"
@@ -964,7 +965,7 @@ export default function CareerPage() {
                 />
                 {applicationData.coverLetter.length > 0 && applicationData.coverLetter.length < 50 && (
                   <p className="text-xs text-red-500 mt-1">
-                    {locale === "id" 
+                    {locale === "id"
                       ? `${50 - applicationData.coverLetter.length} karakter lagi diperlukan`
                       : `${50 - applicationData.coverLetter.length} more characters needed`}
                   </p>
@@ -985,19 +986,19 @@ export default function CareerPage() {
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => setIsModalOpen(false)}
-                className="flex-1 rounded-xl"
+                className="flex-1 rounded-xl w-full sm:w-auto"
               >
                 {locale === "id" ? "Batal" : "Cancel"}
               </Button>
               <Button
                 type="submit"
                 disabled={isSubmitting || !applicationData.consent}
-                className="flex-1 rounded-xl bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary"
+                className="flex-1 rounded-xl bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary w-full sm:w-auto"
               >
                 {isSubmitting
                   ? (locale === "id" ? "Mengirim..." : "Sending...")
@@ -1009,6 +1010,7 @@ export default function CareerPage() {
       </Dialog>
 
       <Footer />
+      <Toaster />
     </div>
   )
 }

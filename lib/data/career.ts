@@ -1,151 +1,151 @@
 export interface JobBenefit {
-  id: string
+  id: string;
   title: {
-    id: string
-    en: string
-  }
+    id: string;
+    en: string;
+  };
   description: {
-    id: string
-    en: string
-  }
-  icon: string
+    id: string;
+    en: string;
+  };
+  icon: string;
 }
 
 export interface JobPosition {
-  id: string
+  id: string;
   title: {
-    id: string
-    en: string
-  }
+    id: string;
+    en: string;
+  };
   department: {
-    id: string
-    en: string
-  }
+    id: string;
+    en: string;
+  };
   location: {
-    id: string
-    en: string
-  }
-  type: 'fullTime' | 'partTime' | 'internship' | 'contract'
-  level: 'intern' | 'junior' | 'mid' | 'senior'
-  function: 'engineering' | 'design' | 'product' | 'marketing' | 'content'
+    id: string;
+    en: string;
+  };
+  type: "fullTime" | "partTime" | "internship" | "contract";
+  level: "intern" | "junior" | "mid" | "senior";
+  function: "engineering" | "design" | "product" | "marketing" | "content";
   description: {
-    id: string
-    en: string
-  }
+    id: string;
+    en: string;
+  };
   responsibilities: {
-    id: string
-    en: string
-  }[]
+    id: string;
+    en: string;
+  }[];
   requirements: {
-    id: string
-    en: string
-  }[]
+    id: string;
+    en: string;
+  }[];
   niceToHave: {
-    id: string
-    en: string
-  }[]
+    id: string;
+    en: string;
+  }[];
   salary: {
-    min: number
-    max: number
-    currency: string
-    period: 'monthly' | 'yearly'
-  }
-  posted: string
-  deadline?: string
-  featured: boolean
+    min: number;
+    max: number;
+    currency: string;
+    period: "monthly" | "yearly";
+  };
+  posted: string;
+  deadline?: string;
+  featured: boolean;
 }
 
 export interface CareerData {
-  positions: JobPosition[]
-  benefits: JobBenefit[]
+  positions: JobPosition[];
+  benefits: JobBenefit[];
 }
 
 export const careerData: CareerData = {
   benefits: [
     {
-      id: 'health-insurance',
+      id: "health-insurance",
       title: {
-        id: 'Asuransi Kesehatan',
-        en: 'Health Insurance'
+        id: "Asuransi Kesehatan",
+        en: "Health Insurance",
       },
       description: {
-        id: 'Asuransi kesehatan lengkap untuk karyawan dan keluarga',
-        en: 'Comprehensive health insurance for employees and family'
+        id: "Asuransi kesehatan lengkap untuk karyawan dan keluarga",
+        en: "Comprehensive health insurance for employees and family",
       },
-      icon: 'Shield'
+      icon: "Shield",
     },
     {
-      id: 'flexible-working',
+      id: "flexible-working",
       title: {
-        id: 'Flexible Working',
-        en: 'Flexible Working'
+        id: "Flexible Working",
+        en: "Flexible Working",
       },
       description: {
-        id: 'Work from home dan jam kerja fleksibel',
-        en: 'Work from home and flexible working hours'
+        id: "Work from home dan jam kerja fleksibel",
+        en: "Work from home and flexible working hours",
       },
-      icon: 'Home'
+      icon: "Home",
     },
     {
-      id: 'team-building',
+      id: "team-building",
       title: {
-        id: 'Team Building',
-        en: 'Team Building'
+        id: "Team Building",
+        en: "Team Building",
       },
       description: {
-        id: 'Kegiatan team building dan company trip rutin',
-        en: 'Regular team building activities and company trips'
+        id: "Kegiatan team building dan company trip rutin",
+        en: "Regular team building activities and company trips",
       },
-      icon: 'Users'
+      icon: "Users",
     },
     {
-      id: 'learning-budget',
+      id: "learning-budget",
       title: {
-        id: 'Learning Budget',
-        en: 'Learning Budget'
+        id: "Learning Budget",
+        en: "Learning Budget",
       },
       description: {
-        id: 'Budget khusus untuk training dan sertifikasi',
-        en: 'Special budget for training and certification'
+        id: "Budget khusus untuk training dan sertifikasi",
+        en: "Special budget for training and certification",
       },
-      icon: 'BookOpen'
+      icon: "BookOpen",
     },
     {
-      id: 'performance-bonus',
+      id: "performance-bonus",
       title: {
-        id: 'Performance Bonus',
-        en: 'Performance Bonus'
+        id: "Performance Bonus",
+        en: "Performance Bonus",
       },
       description: {
-        id: 'Bonus kinerja dan insentif menarik',
-        en: 'Performance bonuses and attractive incentives'
+        id: "Bonus kinerja dan insentif menarik",
+        en: "Performance bonuses and attractive incentives",
       },
-      icon: 'Award'
+      icon: "Award",
     },
     {
-      id: 'free-meals',
+      id: "free-meals",
       title: {
-        id: 'Free Meals & Snacks',
-        en: 'Free Meals & Snacks'
+        id: "Free Meals & Snacks",
+        en: "Free Meals & Snacks",
       },
       description: {
-        id: 'Makan siang gratis dan snack sepuasnya',
-        en: 'Free lunch and unlimited snacks'
+        id: "Makan siang gratis dan snack sepuasnya",
+        en: "Free lunch and unlimited snacks",
       },
-      icon: 'Coffee'
+      icon: "Coffee",
     },
     {
-      id: 'recreation-room',
+      id: "recreation-room",
       title: {
-        id: 'Recreation Room',
-        en: 'Recreation Room'
+        id: "Recreation Room",
+        en: "Recreation Room",
       },
       description: {
-        id: 'Ruang rekreasi dengan games dan hiburan',
-        en: 'Recreation room with games and entertainment'
+        id: "Ruang rekreasi dengan games dan hiburan",
+        en: "Recreation room with games and entertainment",
       },
-      icon: 'Gamepad2'
-    }
+      icon: "Gamepad2",
+    },
   ],
   positions: [
     // TODO: Full-time positions - Coming Soon
@@ -227,7 +227,7 @@ export const careerData: CareerData = {
         currency: 'IDR',
         period: 'monthly'
       },
-      posted: '2024-01-15',
+      posted: '2025-01-15',
       featured: true
     },
     {
@@ -307,7 +307,7 @@ export const careerData: CareerData = {
         currency: 'IDR',
         period: 'monthly'
       },
-      posted: '2024-01-10',
+      posted: '2025-01-10',
       featured: false
     },
     {
@@ -387,170 +387,170 @@ export const careerData: CareerData = {
         currency: 'IDR',
         period: 'monthly'
       },
-      posted: '2024-01-08',
+      posted: '2025-01-08',
       featured: true
     },
     */
     {
-      id: 'frontend-developer-intern',
+      id: "frontend-developer-intern",
       title: {
-        id: 'Frontend Developer Intern',
-        en: 'Frontend Developer Intern'
+        id: "Frontend Developer Intern",
+        en: "Frontend Developer Intern",
       },
       department: {
-        id: 'Engineering',
-        en: 'Engineering'
+        id: "Engineering",
+        en: "Engineering",
       },
       location: {
-        id: 'Kalimantan Tengah',
-        en: 'Central Kalimantan'
+        id: "Kalimantan Tengah",
+        en: "Central Kalimantan",
       },
-      type: 'internship',
-      level: 'intern',
-      function: 'engineering',
+      type: "internship",
+      level: "intern",
+      function: "engineering",
       description: {
-        id: 'Kesempatan magang untuk fresh graduate atau mahasiswa semester akhir yang ingin belajar frontend development di lingkungan profesional.',
-        en: 'Internship opportunity for fresh graduates or final semester students who want to learn frontend development in a professional environment.'
+        id: "Kesempatan magang untuk fresh graduate atau mahasiswa semester akhir yang ingin belajar frontend development di lingkungan profesional.",
+        en: "Internship opportunity for fresh graduates or final semester students who want to learn frontend development in a professional environment.",
       },
       responsibilities: [
         {
-          id: 'Belajar dan mengembangkan komponen UI menggunakan React',
-          en: 'Learn and develop UI components using React'
+          id: "Belajar dan mengembangkan komponen UI menggunakan React",
+          en: "Learn and develop UI components using React",
         },
         {
-          id: 'Assist dalam implementasi design ke kode',
-          en: 'Assist in implementing designs into code'
+          id: "Assist dalam implementasi design ke kode",
+          en: "Assist in implementing designs into code",
         },
         {
-          id: 'Participate dalam code review dan learning sessions',
-          en: 'Participate in code reviews and learning sessions'
+          id: "Participate dalam code review dan learning sessions",
+          en: "Participate in code reviews and learning sessions",
         },
         {
-          id: 'Membantu testing dan debugging aplikasi',
-          en: 'Help with application testing and debugging'
-        }
+          id: "Membantu testing dan debugging aplikasi",
+          en: "Help with application testing and debugging",
+        },
       ],
       requirements: [
         {
-          id: 'Mahasiswa S1 jurusan Teknik Informatika atau bidang terkait',
-          en: 'Undergraduate student in Computer Science or related field'
+          id: "Mahasiswa S1 jurusan Teknik Informatika atau bidang terkait",
+          en: "Undergraduate student in Computer Science or related field",
         },
         {
-          id: 'Basic knowledge HTML, CSS, dan JavaScript',
-          en: 'Basic knowledge of HTML, CSS, and JavaScript'
+          id: "Basic knowledge HTML, CSS, dan JavaScript",
+          en: "Basic knowledge of HTML, CSS, and JavaScript",
         },
         {
-          id: 'Familiar dengan React atau framework JavaScript lainnya',
-          en: 'Familiar with React or other JavaScript frameworks'
+          id: "Familiar dengan React atau framework JavaScript lainnya",
+          en: "Familiar with React or other JavaScript frameworks",
         },
         {
-          id: 'Motivasi tinggi untuk belajar dan berkembang',
-          en: 'High motivation to learn and grow'
-        }
+          id: "Motivasi tinggi untuk belajar dan berkembang",
+          en: "High motivation to learn and grow",
+        },
       ],
       niceToHave: [
         {
-          id: 'Portfolio project pribadi atau akademik',
-          en: 'Personal or academic project portfolio'
+          id: "Portfolio project pribadi atau akademik",
+          en: "Personal or academic project portfolio",
         },
         {
-          id: 'Pengalaman dengan Git version control',
-          en: 'Experience with Git version control'
+          id: "Pengalaman dengan Git version control",
+          en: "Experience with Git version control",
         },
         {
-          id: 'Basic understanding of responsive design',
-          en: 'Basic understanding of responsive design'
-        }
+          id: "Basic understanding of responsive design",
+          en: "Basic understanding of responsive design",
+        },
       ],
       salary: {
         min: 2000000,
         max: 3500000,
-        currency: 'IDR',
-        period: 'monthly'
+        currency: "IDR",
+        period: "monthly",
       },
-      posted: '2024-01-05',
-      deadline: '2024-02-29',
-      featured: false
+      posted: "2025-01-05",
+      deadline: "2025-02-29",
+      featured: false,
     },
     {
-      id: 'content-writer',
+      id: "content-writer",
       title: {
-        id: 'Content Writer',
-        en: 'Content Writer'
+        id: "Content Writer",
+        en: "Content Writer",
       },
       department: {
-        id: 'Marketing',
-        en: 'Marketing'
+        id: "Marketing",
+        en: "Marketing",
       },
       location: {
-        id: 'Remote',
-        en: 'Remote'
+        id: "Remote",
+        en: "Remote",
       },
-      type: 'partTime',
-      level: 'junior',
-      function: 'content',
+      type: "partTime",
+      level: "junior",
+      function: "content",
       description: {
-        id: 'Bergabunglah dengan tim marketing untuk menciptakan konten yang engaging dan edukatif tentang teknologi dan digital solutions.',
-        en: 'Join our marketing team to create engaging and educational content about technology and digital solutions.'
+        id: "Bergabunglah dengan tim marketing untuk menciptakan konten yang engaging dan edukatif tentang teknologi dan digital solutions.",
+        en: "Join our marketing team to create engaging and educational content about technology and digital solutions.",
       },
       responsibilities: [
         {
-          id: 'Menulis blog posts, case studies, dan technical articles',
-          en: 'Write blog posts, case studies, and technical articles'
+          id: "Menulis blog posts, case studies, dan technical articles",
+          en: "Write blog posts, case studies, and technical articles",
         },
         {
-          id: 'Membuat content untuk social media dan email marketing',
-          en: 'Create content for social media and email marketing'
+          id: "Membuat content untuk social media dan email marketing",
+          en: "Create content for social media and email marketing",
         },
         {
-          id: 'Research dan analyze trending topics dalam tech industry',
-          en: 'Research and analyze trending topics in tech industry'
+          id: "Research dan analyze trending topics dalam tech industry",
+          en: "Research and analyze trending topics in tech industry",
         },
         {
-          id: 'Collaborate dengan design team untuk visual content',
-          en: 'Collaborate with design team for visual content'
-        }
+          id: "Collaborate dengan design team untuk visual content",
+          en: "Collaborate with design team for visual content",
+        },
       ],
       requirements: [
         {
-          id: 'Minimal 1-2 tahun pengalaman dalam content writing',
-          en: 'Minimum 1-2 years experience in content writing'
+          id: "Minimal 1-2 tahun pengalaman dalam content writing",
+          en: "Minimum 1-2 years experience in content writing",
         },
         {
-          id: 'Excellent writing skills dalam Bahasa Indonesia dan English',
-          en: 'Excellent writing skills in Indonesian and English'
+          id: "Excellent writing skills dalam Bahasa Indonesia dan English",
+          en: "Excellent writing skills in Indonesian and English",
         },
         {
-          id: 'Pemahaman basic tentang teknologi dan software development',
-          en: 'Basic understanding of technology and software development'
+          id: "Pemahaman basic tentang teknologi dan software development",
+          en: "Basic understanding of technology and software development",
         },
         {
-          id: 'Portfolio yang menunjukkan kemampuan menulis tech content',
-          en: 'Portfolio demonstrating tech content writing capabilities'
-        }
+          id: "Portfolio yang menunjukkan kemampuan menulis tech content",
+          en: "Portfolio demonstrating tech content writing capabilities",
+        },
       ],
       niceToHave: [
         {
-          id: 'Pengalaman dengan SEO dan content marketing',
-          en: 'Experience with SEO and content marketing'
+          id: "Pengalaman dengan SEO dan content marketing",
+          en: "Experience with SEO and content marketing",
         },
         {
-          id: 'Knowledge tentang digital marketing tools',
-          en: 'Knowledge of digital marketing tools'
+          id: "Knowledge tentang digital marketing tools",
+          en: "Knowledge of digital marketing tools",
         },
         {
-          id: 'Background dalam startup atau tech company',
-          en: 'Background in startup or tech company'
-        }
+          id: "Background dalam startup atau tech company",
+          en: "Background in startup or tech company",
+        },
       ],
       salary: {
         min: 4000000,
         max: 7000000,
-        currency: 'IDR',
-        period: 'monthly'
+        currency: "IDR",
+        period: "monthly",
       },
-      posted: '2024-01-12',
-      featured: false
-    }
-  ]
-}
+      posted: "2025-01-12",
+      featured: false,
+    },
+  ],
+};
