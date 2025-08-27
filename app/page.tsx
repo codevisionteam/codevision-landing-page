@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { ArrowRight, CheckCircle, Globe, Smartphone, Cloud, Building, Users, Code, Shield, Zap, Sparkles, Star, 
          Database, Server, FileCode, Layout, Cpu, Layers, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -137,7 +138,7 @@ export default function HomePage() {
                     {/* Glow effect */}
                     <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-primary rounded-full blur-xl opacity-30 group-hover:opacity-60 animate-pulse transition-all duration-500" />
                     {/* Button */}
-                    <button className="relative overflow-hidden px-12 py-6 text-xl font-bold text-white bg-gradient-to-r from-primary via-secondary to-primary rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 group">
+                    <Link href="/contact" className="relative overflow-hidden px-12 py-6 text-xl font-bold text-white bg-gradient-to-r from-primary via-secondary to-primary rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 group inline-flex items-center">
                       {/* Shimmer overlay */}
                       <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
                       {/* Content */}
@@ -148,7 +149,7 @@ export default function HomePage() {
                       </div>
                       {/* Inner glow */}
                       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </button>
+                    </Link>
                   </div>
                 </Magnetic>
 

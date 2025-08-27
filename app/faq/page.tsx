@@ -262,9 +262,11 @@ export default function FAQPage() {
                       </Magnetic>
                       
                       <Magnetic strength={0.15}>
-                        <Button variant="outline" size="lg" className="px-8 py-4 rounded-full border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
-                          <HelpCircle className="mr-2 h-5 w-5" />
-                          {t("faq.cta.consultation")}
+                        <Button variant="outline" size="lg" asChild className="px-8 py-4 rounded-full border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300">
+                          <Link href="/contact">
+                            <HelpCircle className="mr-2 h-5 w-5" />
+                            {t("faq.cta.consultation")}
+                          </Link>
                         </Button>
                       </Magnetic>
                     </div>

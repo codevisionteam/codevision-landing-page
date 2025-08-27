@@ -515,8 +515,10 @@ export default function PortfolioDetailPage({ params }: PortfolioDetailPageProps
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Magnetic strength={0.2}>
-                  <Button size="lg" className="rounded-full px-10 py-6 text-lg bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-500 shadow-xl hover:shadow-2xl">
-                    {locale === "id" ? "Konsultasi Gratis" : "Free Consultation"}
+                  <Button size="lg" asChild className="rounded-full px-10 py-6 text-lg bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-500 shadow-xl hover:shadow-2xl">
+                    <Link href="/contact">
+                      {locale === "id" ? "Konsultasi Gratis" : "Free Consultation"}
+                    </Link>
                   </Button>
                 </Magnetic>
                 <Magnetic strength={0.15}>
