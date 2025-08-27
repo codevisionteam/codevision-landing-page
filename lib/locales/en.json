@@ -272,6 +272,7 @@
     "web": "Web Development",
     "mobile": "Mobile Applications",
     "saas": "SaaS Solutions",
-    "b2b": "B2B Applications"
+    "b2b": "B2B Applications",
+    "b2c": "B2C Applications"
   }
 }

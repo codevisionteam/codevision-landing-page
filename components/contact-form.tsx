@@ -38,11 +38,11 @@ export function ContactForm() {
   })
 
   const services = [
-    { value: "web", label: t("services.web") },
-    { value: "mobile", label: t("services.mobile") },
-    { value: "saas", label: t("services.saas") },
-    { value: "b2b", label: t("services.b2b") },
-    { value: "b2c", label: t("services.b2c") },
+    { value: "web", label: t("servicesList.web") },
+    { value: "mobile", label: t("servicesList.mobile") },
+    { value: "saas", label: t("servicesList.saas") },
+    { value: "b2b", label: t("servicesList.b2b") },
+    { value: "b2c", label: t("servicesList.b2c") },
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -18,10 +18,10 @@ const quickLinks = [
 ]
 
 const services = [
-  { key: "services.web", href: "/services/web" },
-  { key: "services.mobile", href: "/services/mobile" },
-  { key: "services.saas", href: "/services/saas" },
-  { key: "services.b2b", href: "/services/b2b" },
+  { key: "servicesList.web", href: "/services/web" },
+  { key: "servicesList.mobile", href: "/services/mobile" },
+  { key: "servicesList.saas", href: "/services/saas" },
+  { key: "servicesList.b2b", href: "/services/b2b" },
 ]
 
 export function Footer() {

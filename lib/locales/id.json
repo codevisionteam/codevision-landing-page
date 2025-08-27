@@ -272,6 +272,7 @@
     "web": "Pengembangan Web",
     "mobile": "Aplikasi Mobile", 
     "saas": "Solusi SaaS",
-    "b2b": "Aplikasi B2B"
+    "b2b": "Aplikasi B2B",
+    "b2c": "Aplikasi B2C"
   }
 }
