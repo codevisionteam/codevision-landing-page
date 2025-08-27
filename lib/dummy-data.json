@@ -1,0 +1,196 @@
+{
+  "services": [
+    {
+      "id": "web-development",
+      "title": {
+        "id": "Pengembangan Web",
+        "en": "Web Development"
+      },
+      "description": {
+        "id": "Solusi web modern dan responsif untuk bisnis Anda",
+        "en": "Modern and responsive web solutions for your business"
+      },
+      "icon": "globe"
+    },
+    {
+      "id": "mobile-apps",
+      "title": {
+        "id": "Aplikasi Mobile",
+        "en": "Mobile Apps"
+      },
+      "description": {
+        "id": "Aplikasi iOS dan Android yang user-friendly",
+        "en": "User-friendly iOS and Android applications"
+      },
+      "icon": "smartphone"
+    },
+    {
+      "id": "saas-solutions",
+      "title": {
+        "id": "Solusi SaaS",
+        "en": "SaaS Solutions"
+      },
+      "description": {
+        "id": "Platform cloud yang scalable untuk bisnis modern",
+        "en": "Scalable cloud platforms for modern businesses"
+      },
+      "icon": "cloud"
+    },
+    {
+      "id": "b2b-applications",
+      "title": {
+        "id": "Aplikasi B2B",
+        "en": "B2B Applications"
+      },
+      "description": {
+        "id": "Sistem enterprise untuk meningkatkan efisiensi bisnis",
+        "en": "Enterprise systems to improve business efficiency"
+      },
+      "icon": "building"
+    },
+    {
+      "id": "b2c-applications",
+      "title": {
+        "id": "Aplikasi B2C",
+        "en": "B2C Applications"
+      },
+      "description": {
+        "id": "Aplikasi consumer yang engaging dan intuitif",
+        "en": "Engaging and intuitive consumer applications"
+      },
+      "icon": "users"
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "ecommerce-platform",
+      "title": "E-Commerce Platform",
+      "client": "PT. Digital Commerce",
+      "category": "web",
+      "industry": "retail",
+      "description": {
+        "id": "Platform e-commerce lengkap dengan sistem pembayaran terintegrasi",
+        "en": "Complete e-commerce platform with integrated payment system"
+      },
+      "image": "/placeholder.svg?height=300&width=400&text=E-Commerce+Platform",
+      "technologies": ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
+      "year": 2024
+    },
+    {
+      "id": "mobile-banking",
+      "title": "Mobile Banking App",
+      "client": "Bank Digital Indonesia",
+      "category": "mobile",
+      "industry": "finance",
+      "description": {
+        "id": "Aplikasi mobile banking dengan fitur keamanan tinggi",
+        "en": "Mobile banking app with high security features"
+      },
+      "image": "/placeholder.svg?height=300&width=400&text=Mobile+Banking+App",
+      "technologies": ["React Native", "Node.js", "MongoDB", "JWT"],
+      "year": 2024
+    },
+    {
+      "id": "hr-management",
+      "title": "HR Management System",
+      "client": "PT. Human Resources Tech",
+      "category": "saas",
+      "industry": "hr",
+      "description": {
+        "id": "Sistem manajemen SDM berbasis cloud",
+        "en": "Cloud-based HR management system"
+      },
+      "image": "/placeholder.svg?height=300&width=400&text=HR+Management+System",
+      "technologies": ["React", "Express.js", "MySQL", "AWS"],
+      "year": 2023
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Budi Santoso",
+      "position": "CEO",
+      "company": "PT. Digital Commerce",
+      "content": {
+        "id": "Codevision berhasil mengembangkan platform e-commerce yang sangat sesuai dengan kebutuhan bisnis kami. Tim yang profesional dan hasil yang memuaskan.",
+        "en": "Codevision successfully developed an e-commerce platform that perfectly fits our business needs. Professional team and satisfying results."
+      },
+      "rating": 5,
+      "avatar": "/placeholder.svg?height=60&width=60&text=BS"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Wijaya",
+      "position": "CTO",
+      "company": "Bank Digital Indonesia",
+      "content": {
+        "id": "Aplikasi mobile banking yang dikembangkan Codevision memiliki standar keamanan tinggi dan user experience yang excellent.",
+        "en": "The mobile banking app developed by Codevision has high security standards and excellent user experience."
+      },
+      "rating": 5,
+      "avatar": "/placeholder.svg?height=60&width=60&text=SW"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "frontend-developer",
+      "title": {
+        "id": "Frontend Developer",
+        "en": "Frontend Developer"
+      },
+      "level": "mid",
+      "type": "full-time",
+      "function": "engineering",
+      "location": "Jakarta",
+      "description": {
+        "id": "Bergabunglah dengan tim kami untuk mengembangkan antarmuka web yang menakjubkan",
+        "en": "Join our team to develop amazing web interfaces"
+      },
+      "requirements": ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+      "posted": "2024-01-15"
+    },
+    {
+      "id": "backend-developer",
+      "title": {
+        "id": "Backend Developer",
+        "en": "Backend Developer"
+      },
+      "level": "senior",
+      "type": "full-time",
+      "function": "engineering",
+      "location": "Jakarta",
+      "description": {
+        "id": "Kembangkan sistem backend yang robust dan scalable",
+        "en": "Develop robust and scalable backend systems"
+      },
+      "requirements": ["Node.js", "PostgreSQL", "Docker", "AWS"],
+      "posted": "2024-01-10"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "services-1",
+      "category": "services",
+      "question": {
+        "id": "Layanan apa saja yang ditawarkan Codevision?",
+        "en": "What services does Codevision offer?"
+      },
+      "answer": {
+        "id": "Kami menawarkan pengembangan web, aplikasi mobile, solusi SaaS, aplikasi B2B, dan B2C dengan teknologi terdepan.",
+        "en": "We offer web development, mobile applications, SaaS solutions, B2B and B2C applications using cutting-edge technology."
+      }
+    },
+    {
+      "id": "process-1",
+      "category": "process",
+      "question": {
+        "id": "Bagaimana proses pengembangan di Codevision?",
+        "en": "What is the development process at Codevision?"
+      },
+      "answer": {
+        "id": "Kami menggunakan metodologi Agile dengan tahapan konsultasi, desain, pengembangan, testing, dan deployment.",
+        "en": "We use Agile methodology with consultation, design, development, testing, and deployment phases."
+      }
+    }
+  ]
+}
