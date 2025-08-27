@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
-import { Filter, Clock, Heart, Users, Zap, Award, Coffee, Gamepad2, Star, Target, Rocket, Globe, Code, Palette, Database, Upload, FileText, X } from "lucide-react"
+import { Filter, Clock, Users, Award, Star, Target, Rocket, Globe, Code, Palette, Database, Upload, FileText, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -57,14 +57,6 @@ const jobFunctions = [
 
 const benefits = [
   {
-    icon: Heart,
-    title: { id: "Asuransi Kesehatan", en: "Health Insurance" },
-    description: {
-      id: "Asuransi kesehatan komprehensif untuk karyawan dan keluarga",
-      en: "Comprehensive health insurance for employees and family",
-    },
-  },
-  {
     icon: Clock,
     title: { id: "Flexible Working", en: "Flexible Working" },
     description: {
@@ -81,32 +73,11 @@ const benefits = [
     },
   },
   {
-    icon: Zap,
-    title: { id: "Learning Budget", en: "Learning Budget" },
-    description: {
-      id: "Budget khusus untuk pengembangan skill dan sertifikasi",
-      en: "Dedicated budget for skill development and certification",
-    },
-  },
-  {
     icon: Award,
     title: { id: "Performance Bonus", en: "Performance Bonus" },
     description: {
       id: "Bonus berdasarkan performa individu dan tim",
       en: "Bonus based on individual and team performance",
-    },
-  },
-  {
-    icon: Coffee,
-    title: { id: "Free Meals & Snacks", en: "Free Meals & Snacks" },
-    description: { id: "Makan siang gratis dan snack sepanjang hari", en: "Free lunch and snacks throughout the day" },
-  },
-  {
-    icon: Gamepad2,
-    title: { id: "Recreation Room", en: "Recreation Room" },
-    description: {
-      id: "Ruang rekreasi dengan games dan fasilitas santai",
-      en: "Recreation room with games and relaxation facilities",
     },
   },
 ]

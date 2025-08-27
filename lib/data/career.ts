@@ -63,18 +63,6 @@ export interface CareerData {
 export const careerData: CareerData = {
   benefits: [
     {
-      id: "health-insurance",
-      title: {
-        id: "Asuransi Kesehatan",
-        en: "Health Insurance",
-      },
-      description: {
-        id: "Asuransi kesehatan lengkap untuk karyawan dan keluarga",
-        en: "Comprehensive health insurance for employees and family",
-      },
-      icon: "Shield",
-    },
-    {
       id: "flexible-working",
       title: {
         id: "Flexible Working",
@@ -99,18 +87,6 @@ export const careerData: CareerData = {
       icon: "Users",
     },
     {
-      id: "learning-budget",
-      title: {
-        id: "Learning Budget",
-        en: "Learning Budget",
-      },
-      description: {
-        id: "Budget khusus untuk training dan sertifikasi",
-        en: "Special budget for training and certification",
-      },
-      icon: "BookOpen",
-    },
-    {
       id: "performance-bonus",
       title: {
         id: "Performance Bonus",
@@ -121,30 +97,6 @@ export const careerData: CareerData = {
         en: "Performance bonuses and attractive incentives",
       },
       icon: "Award",
-    },
-    {
-      id: "free-meals",
-      title: {
-        id: "Free Meals & Snacks",
-        en: "Free Meals & Snacks",
-      },
-      description: {
-        id: "Makan siang gratis dan snack sepuasnya",
-        en: "Free lunch and unlimited snacks",
-      },
-      icon: "Coffee",
-    },
-    {
-      id: "recreation-room",
-      title: {
-        id: "Recreation Room",
-        en: "Recreation Room",
-      },
-      description: {
-        id: "Ruang rekreasi dengan games dan hiburan",
-        en: "Recreation room with games and entertainment",
-      },
-      icon: "Gamepad2",
     },
   ],
   positions: [

@@ -127,10 +127,6 @@
       "title": "Benefits & Facilities",
       "subtitle": "Enjoy various attractive benefits we provide for our best team",
       "items": {
-        "healthInsurance": {
-          "title": "Health Insurance",
-          "description": "Comprehensive health insurance for employees and family"
-        },
         "flexibleWorking": {
           "title": "Flexible Working",
           "description": "Work from home and flexible working hours"
@@ -139,21 +135,9 @@
           "title": "Team Building",
           "description": "Regular team building activities and company trips"
         },
-        "learningBudget": {
-          "title": "Learning Budget",
-          "description": "Special budget for training and certification"
-        },
         "performanceBonus": {
           "title": "Performance Bonus",
           "description": "Performance bonuses and attractive incentives"
-        },
-        "freeMeals": {
-          "title": "Free Meals & Snacks",
-          "description": "Free lunch and unlimited snacks"
-        },
-        "recreationRoom": {
-          "title": "Recreation Room",
-          "description": "Recreation room with games and entertainment"
         }
       }
     },

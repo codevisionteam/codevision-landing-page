@@ -127,10 +127,6 @@
       "title": "Benefit & Fasilitas",
       "subtitle": "Nikmati berbagai benefit menarik yang kami sediakan untuk tim terbaik kami",
       "items": {
-        "healthInsurance": {
-          "title": "Asuransi Kesehatan",
-          "description": "Asuransi kesehatan lengkap untuk karyawan dan keluarga"
-        },
         "flexibleWorking": {
           "title": "Flexible Working",
           "description": "Work from home dan jam kerja fleksibel"
@@ -139,21 +135,9 @@
           "title": "Team Building",
           "description": "Kegiatan team building dan company trip rutin"
         },
-        "learningBudget": {
-          "title": "Learning Budget",
-          "description": "Budget khusus untuk training dan sertifikasi"
-        },
         "performanceBonus": {
           "title": "Performance Bonus",
           "description": "Bonus kinerja dan insentif menarik"
-        },
-        "freeMeals": {
-          "title": "Free Meals & Snacks",
-          "description": "Makan siang gratis dan snack sepuasnya"
-        },
-        "recreationRoom": {
-          "title": "Recreation Room",
-          "description": "Ruang rekreasi dengan games dan hiburan"
         }
       }
     },
