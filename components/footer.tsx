@@ -98,11 +98,11 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 flex-shrink-0" />
-                  <span>Jakarta, Indonesia</span>
+                  <span>{locale === "id" ? "Kalimantan Tengah" : "Central Kalimantan"}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span>+62 21 1234 5678</span>
+                  <span>+6285773333569</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <Mail className="h-4 w-4 flex-shrink-0" />

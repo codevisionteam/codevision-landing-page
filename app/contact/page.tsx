@@ -23,8 +23,8 @@ const contactInfo = [
     icon: MapPin,
     title: { id: "Alamat Kantor", en: "Office Address" },
     content: {
-      id: "Jl. Sudirman No. 123, Jakarta Pusat\nDKI Jakarta 10220, Indonesia",
-      en: "Jl. Sudirman No. 123, Central Jakarta\nDKI Jakarta 10220, Indonesia",
+      id: "Jl Temanggung Silam RT 002/RW 004 NO 29\nPuruk Cahu, Kec. Murung, Kabupaten Murung Raya\nKalimantan Tengah 73911",
+      en: "Jl Temanggung Silam RT 002/RW 004 NO 29\nPuruk Cahu, Kec. Murung, Kabupaten Murung Raya\nKalimantan Tengah 73911",
     },
     color: "blue",
   },
@@ -32,8 +32,8 @@ const contactInfo = [
     icon: Phone,
     title: { id: "Telepon", en: "Phone" },
     content: {
-      id: "+62 21 1234 5678\n+62 812 3456 7890",
-      en: "+62 21 1234 5678\n+62 812 3456 7890",
+      id: "+6285773333569",
+      en: "+6285773333569",
     },
     color: "green",
   },
@@ -41,8 +41,8 @@ const contactInfo = [
     icon: Mail,
     title: { id: "Email", en: "Email" },
     content: {
-      id: "hello@codevision.id\ninfo@codevision.id",
-      en: "hello@codevision.id\ninfo@codevision.id",
+      id: "hello@codevision.id",
+      en: "hello@codevision.id",
     },
     color: "purple",
   },
@@ -50,8 +50,8 @@ const contactInfo = [
     icon: Clock,
     title: { id: "Jam Operasional", en: "Business Hours" },
     content: {
-      id: "Senin - Jumat: 09:00 - 18:00\nSabtu: 09:00 - 15:00\nMinggu: Tutup",
-      en: "Monday - Friday: 09:00 - 18:00\nSaturday: 09:00 - 15:00\nSunday: Closed",
+      id: "Senin - Jumat: 09:00 - 18:00\nMinggu - Minggu: Tutup",
+      en: "Monday - Friday: 09:00 - 18:00\nSunday - Sunday: Closed",
     },
     color: "orange",
   },
@@ -61,9 +61,9 @@ const quickActions = [
   {
     icon: MessageCircle,
     title: { id: "Chat WhatsApp", en: "WhatsApp Chat" },
-    description: { id: "Respon cepat dalam 5 menit", en: "Quick response in 5 minutes" },
+    description: { id: "Respon cepat dalam jam kerja", en: "Quick response during business hours" },
     action: { id: "Mulai Chat", en: "Start Chat" },
-    href: "https://wa.me/6281234567890",
+    href: "https://wa.me/6285773333569",
     color: "bg-green-500 hover:bg-green-600",
   },
   {
@@ -73,14 +73,6 @@ const quickActions = [
     action: { id: "Book Now", en: "Book Now" },
     href: "https://calendly.com/codevision",
     color: "bg-blue-500 hover:bg-blue-600",
-  },
-  {
-    icon: Headphones,
-    title: { id: "Support 24/7", en: "24/7 Support" },
-    description: { id: "Tim support siap membantu", en: "Support team ready to help" },
-    action: { id: "Hubungi", en: "Contact" },
-    href: "mailto:support@codevision.id",
-    color: "bg-purple-500 hover:bg-purple-600",
   },
 ]
 
@@ -152,7 +144,7 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={0.8}>
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
                 <TiltCard tiltAngle={3}>
                   <div className="flex flex-col items-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 hover:scale-105 transition-transform duration-300">
                     <MessageCircle className="h-8 w-8 text-green-500 mb-3" />
@@ -181,10 +173,10 @@ export default function ContactPage() {
                   <div className="flex flex-col items-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950 dark:to-purple-900 hover:scale-105 transition-transform duration-300">
                     <Headphones className="h-8 w-8 text-purple-500 mb-3" />
                     <span className="text-sm font-semibold text-purple-800 dark:text-purple-200">
-                      {locale === "id" ? "Support 24/7" : "24/7 Support"}
+                      {locale === "id" ? "Layanan Profesional" : "Professional Service"}
                     </span>
                     <span className="text-xs text-purple-600 dark:text-purple-400">
-                      {locale === "id" ? "Selalu siap" : "Always ready"}
+                      {locale === "id" ? "Tim berpengalaman" : "Experienced team"}
                     </span>
                   </div>
                 </TiltCard>
@@ -214,7 +206,7 @@ export default function ContactPage() {
             </div>
           </Reveal>
 
-          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6" staggerDelay={0.1}>
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto" staggerDelay={0.1}>
             {quickActions.map((action, index) => (
               <TiltCard key={index} tiltAngle={3}>
                 <GlowEffect intensity="low">
@@ -305,24 +297,35 @@ export default function ContactPage() {
                   ))}
                 </Stagger>
 
-                {/* Enhanced Office Map Placeholder */}
+                {/* Google Maps */}
                 <TiltCard tiltAngle={3}>
                   <GlowEffect intensity="medium">
                     <Card className="overflow-hidden">
-                      <CardContent className="p-0">
-                        <div className="relative h-64 bg-gradient-to-br from-muted/50 to-muted">
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-center">
-                              <MapPin className="h-12 w-12 text-primary mx-auto mb-2" />
-                              <p className="text-sm text-muted-foreground">
-                                {locale === "id" ? "Peta Lokasi Kantor" : "Office Location Map"}
-                              </p>
-                              <p className="text-xs text-muted-foreground mt-1">
-                                {locale === "id" ? "Jakarta Pusat" : "Central Jakarta"}
-                              </p>
-                            </div>
+                      <CardHeader className="pb-4">
+                        <div className="flex items-center space-x-3">
+                          <MapPin className="h-6 w-6 text-primary" />
+                          <div>
+                            <CardTitle className="text-lg">
+                              {locale === "id" ? "Lokasi Kantor" : "Office Location"}
+                            </CardTitle>
+                            <CardDescription>
+                              {locale === "id" ? "Kalimantan Tengah" : "Central Kalimantan"}
+                            </CardDescription>
                           </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
+                        </div>
+                      </CardHeader>
+                      <CardContent className="p-0">
+                        <div className="relative h-64 w-full">
+                          <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.5903770735513!2d114.5714003!3d-0.6124582999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df91ff14e5c8f7d%3A0x5c66084f3ad1708c!2sCV.%20Mahkota%20Barito!5e0!3m2!1sid!2sid!4v1756273890868!5m2!1sid!2sid"
+                            width="100%"
+                            height="256"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="rounded-b-lg"
+                          />
                         </div>
                       </CardContent>
                     </Card>

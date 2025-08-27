@@ -529,7 +529,7 @@ export default function HomePage() {
                     <Zap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {locale === "id" ? "Respon 24 Jam" : "24H Response"}
+                    {locale === "id" ? "Respon Cepat" : "Fast Response"}
                   </h3>
                   <p className="text-muted-foreground">
                     {locale === "id" ? "Tim kami siap membantu" : "Our team is ready to help"}
