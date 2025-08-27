@@ -7,9 +7,7 @@ import { Container } from "@/components/container"
 import { useI18n } from "@/components/i18n-provider"
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/codevision", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/company/codevision", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com/codevision", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com/company/codevisionindonesia", label: "LinkedIn" },
 ]
 
 const quickLinks = [
