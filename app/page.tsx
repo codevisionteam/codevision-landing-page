@@ -1,8 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Globe, Smartphone, Cloud, Building, Users, Code, Shield, Zap, Sparkles, Star, 
-         Database, Server, FileCode, Layout, Cpu, Layers, Monitor } from "lucide-react"
+import {
+  ArrowRight, CheckCircle, Globe, Smartphone, Cloud, Building, Users, Code, Shield, Zap, Sparkles, Star,
+  Database, Server, FileCode, Layout, Cpu, Layers, Monitor
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Navbar } from "@/components/navbar"
@@ -99,7 +101,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-6xl text-center">
             {/* Logo with enhanced animation */}
             <Reveal delay={0.2}>
-              <div className="mb-8 flex justify-center">
+              <div className="mt-12 flex justify-center">
                 <div className="relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse" />
                   <GlowEffect intensity="high">
@@ -192,7 +194,7 @@ export default function HomePage() {
                     {locale === "id" ? "100+ Proyek Selesai" : "100+ Projects Completed"}
                   </Badge>
                 </div>
-                
+
                 <div className="group relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-full blur group-hover:blur-md transition-all duration-300" />
                   <Badge className="relative px-8 py-4 text-lg font-semibold bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 text-blue-800 dark:text-blue-200 border-2 border-blue-200/50 dark:border-blue-800/50 rounded-full hover:scale-110 transition-transform duration-300">
@@ -200,7 +202,7 @@ export default function HomePage() {
                     {locale === "id" ? "Rating 4.9/5" : "4.9/5 Rating"}
                   </Badge>
                 </div>
-                
+
                 <div className="group relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-green-400/20 to-green-600/20 rounded-full blur group-hover:blur-md transition-all duration-300" />
                   <Badge className="relative px-8 py-4 text-lg font-semibold bg-gradient-to-r from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 text-green-800 dark:text-green-200 border-2 border-green-200/50 dark:border-green-800/50 rounded-full hover:scale-110 transition-transform duration-300">
@@ -534,7 +536,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary),0.1)_0%,transparent_50%)]" />
         <FloatingElements count={8} variant="circles" className="absolute inset-0" />
-        
+
         <Container className="relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <Reveal>
@@ -544,7 +546,7 @@ export default function HomePage() {
                 </GradientText>
               </h2>
             </Reveal>
-            
+
             <Reveal delay={0.2}>
               <p className="text-2xl text-muted-foreground mb-12 leading-relaxed font-medium">
                 {locale === "id"
@@ -552,7 +554,7 @@ export default function HomePage() {
                   : "Let's discuss your ideas and turn them into extraordinary digital solutions. Free consultation for all new clients."}
               </p>
             </Reveal>
-            
+
             <Reveal delay={0.4}>
               <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
                 <Magnetic strength={0.3}>
