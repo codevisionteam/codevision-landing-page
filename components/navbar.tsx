@@ -89,7 +89,7 @@ export function Navbar() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80 glass">
+            <SheetContent side="right" className="w-80 glass-light dark:glass">
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col space-y-6 mt-6">
                 <nav className="flex flex-col space-y-1">
