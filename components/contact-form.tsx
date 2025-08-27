@@ -49,29 +49,63 @@ export function ContactForm() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // Show loading toast
+      toast({
+        title: locale === "id" ? "Mengirim pesan..." : "Sending message...",
+        description: locale === "id" ? "Mohon tunggu sebentar" : "Please wait a moment",
+      })
 
-    toast({
-      title: locale === "id" ? "Pesan Terkirim!" : "Message Sent!",
-      description:
-        locale === "id"
-          ? "Terima kasih atas pesan Anda. Tim kami akan segera menghubungi Anda."
-          : "Thank you for your message. Our team will contact you soon.",
-    })
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: `Contact Form - ${formData.service ? services.find(s => s.value === formData.service)?.label : 'General Inquiry'}`,
+          message: `Nama: ${formData.name}\nEmail: ${formData.email}\nTelepon: ${formData.phone || 'Tidak disediakan'}\nPerusahaan: ${formData.company || 'Tidak disediakan'}\nLayanan: ${formData.service ? services.find(s => s.value === formData.service)?.label : 'Tidak dipilih'}\n\nPesan:\n${formData.message}`,
+        }),
+      })
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      service: "",
-      message: "",
-      consent: false,
-    })
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
 
-    setIsSubmitting(false)
+      const result = await response.json()
+
+      toast({
+        title: locale === "id" ? "Pesan Terkirim!" : "Message Sent!",
+        description:
+          locale === "id"
+            ? "Terima kasih atas pesan Anda. Tim kami akan segera menghubungi Anda."
+            : "Thank you for your message. Our team will contact you soon.",
+      })
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        message: "",
+        consent: false,
+      })
+    } catch (error) {
+      console.error('Error sending message:', error)
+      toast({
+        title: locale === "id" ? "Gagal Mengirim" : "Failed to Send",
+        description:
+          locale === "id"
+            ? "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi."
+            : "An error occurred while sending the message. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (field: keyof FormData, value: string | boolean) => {

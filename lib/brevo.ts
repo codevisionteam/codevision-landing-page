@@ -31,6 +31,13 @@ export interface CareerApplicationData {
   cvFileName?: string;
 }
 
+export interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 // Default sender configuration
 const defaultSender = {
   email: process.env.BREVO_SENDER_EMAIL || "hello@codevision.com",
@@ -304,5 +311,84 @@ export async function sendCareerApplicationEmails(
       applicantEmailSent: false,
       adminEmailSent: false,
     };
+  }
+}
+
+// Send contact form email
+export async function sendContactEmail(contactData: ContactFormData): Promise<boolean> {
+  try {
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Pesan Kontak Baru - ${contactData.subject}</title>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+          .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
+          .contact-info { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #3498db; }
+          .message-content { background: #ecf0f1; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>📧 Pesan Kontak Baru</h1>
+            <p>Subjek: ${contactData.subject}</p>
+          </div>
+          <div class="content">
+            <div class="contact-info">
+              <h3>Informasi Pengirim:</h3>
+              <ul>
+                <li><strong>Nama:</strong> ${contactData.name}</li>
+                <li><strong>Email:</strong> <a href="mailto:${contactData.email}">${contactData.email}</a></li>
+                <li><strong>Subjek:</strong> ${contactData.subject}</li>
+              </ul>
+            </div>
+            
+            <div class="message-content">
+              <h3>Pesan:</h3>
+              <p>${contactData.message.replace(/\n/g, "<br>")}</p>
+            </div>
+            
+            <p><strong>Tindakan selanjutnya:</strong> Silakan balas email ini untuk merespons pesan dari ${contactData.name}.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const textContent = `
+      Pesan Kontak Baru
+      
+      Subjek: ${contactData.subject}
+      
+      Informasi Pengirim:
+      - Nama: ${contactData.name}
+      - Email: ${contactData.email}
+      - Subjek: ${contactData.subject}
+      
+      Pesan:
+      ${contactData.message}
+      
+      Tindakan selanjutnya: Silakan balas email ini untuk merespons pesan dari ${contactData.name}.
+    `;
+
+    const emailTemplate: EmailTemplate = {
+      to: [{ email: "hello@codevision.id", name: "Codevision Team" }],
+      subject: `📧 Pesan Kontak: ${contactData.subject} - ${contactData.name}`,
+      htmlContent,
+      textContent,
+      replyTo: { email: contactData.email, name: contactData.name },
+    };
+
+    const result = await sendEmail(emailTemplate);
+    console.log('Contact email sent:', result);
+    return result;
+  } catch (error) {
+    console.error('Error sending contact email:', error);
+    return false;
   }
 }

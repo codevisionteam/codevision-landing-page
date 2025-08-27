@@ -10,6 +10,7 @@ import { Container } from "@/components/container"
 import { Section } from "@/components/section"
 import { ContactForm } from "@/components/contact-form"
 import { useI18n } from "@/components/i18n-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 // Import stunning UI components
 import { AnimatedBackground } from "@/components/ui/animated-background"
@@ -391,6 +392,7 @@ export default function ContactPage() {
       </Section>
 
       <Footer />
+      <Toaster />
     </div>
   )
 }
