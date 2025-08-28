@@ -72,7 +72,7 @@ const quickActions = [
     title: { id: "Jadwalkan Meeting", en: "Schedule Meeting" },
     description: { id: "Konsultasi gratis 30 menit", en: "Free 30-minute consultation" },
     action: { id: "Book Now", en: "Book Now" },
-    href: "https://calendly.com/codevision",
+    href: "https://cal.com/codevision",
     color: "bg-blue-500 hover:bg-blue-600",
   },
 ]
