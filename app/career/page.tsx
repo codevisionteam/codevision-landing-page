@@ -21,7 +21,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useI18n } from "@/components/i18n-provider"
 import { useToast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
-import dummyData from "@/lib/dummy-data.json"
+import { careerData } from "@/lib/data/career"
 
 // Import stunning UI components
 import { AnimatedBackground } from "@/components/ui/animated-background"
@@ -82,10 +82,8 @@ const benefits = [
   },
 ]
 
-// Extended job data with internship positions
-const extendedJobs = [
-  ...dummyData.jobs,
-  // Internship Positions
+// Use career data from career.ts and combine with additional internships
+const additionalInternships = [
   {
     id: "flutter-developer-intern",
     title: { id: "Flutter Developer - Internship", en: "Flutter Developer - Internship" },
@@ -223,7 +221,10 @@ export default function CareerPage() {
   })
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const filteredJobs = extendedJobs.filter((job) => {
+  // Combine career data with additional internships
+  const allJobs = [...careerData.positions, ...additionalInternships]
+  
+  const filteredJobs = allJobs.filter((job: any) => {
     // Hide full-time positions by default unless specifically selected
     if (job.type === "full-time" && selectedType === "all" && selectedLevel !== "all") {
       return false
@@ -624,17 +625,17 @@ export default function CareerPage() {
             </Reveal>
 
             <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" staggerDelay={0.1}>
-              {extendedJobs.filter(job => job.level === 'intern').map((job) => (
+              {allJobs.filter(job => job.level === 'intern').map((job: any) => (
                 <TiltCard key={job.id} tiltAngle={5}>
                   <GlowEffect intensity="low">
                     <JobCard
                       id={job.id}
-                      title={job.title[locale]}
+                      title={(typeof job.title === 'string' ? job.title : job.title[locale]) as string}
                       level={job.level}
                       type={job.type}
-                      location={job.location}
-                      description={job.description[locale]}
-                      requirements={job.requirements}
+                      location={(typeof job.location === 'string' ? job.location : job.location[locale]) as string}
+                      description={(typeof job.description === 'string' ? job.description : job.description[locale]) as string}
+                      requirements={(Array.isArray(job.requirements) && typeof job.requirements[0] === 'string' ? job.requirements : job.requirements?.map((req: any) => typeof req === 'string' ? req : req[locale]).filter(Boolean) || []) as string[]}
                       posted={job.posted}
                       onApply={handleApply}
                     />
@@ -671,12 +672,12 @@ export default function CareerPage() {
                   <GlowEffect intensity="low">
                     <JobCard
                       id={job.id}
-                      title={job.title[locale]}
+                      title={(typeof job.title === 'string' ? job.title : job.title[locale]) as string}
                       level={job.level}
                       type={job.type}
-                      location={job.location}
-                      description={job.description[locale]}
-                      requirements={job.requirements}
+                      location={(typeof job.location === 'string' ? job.location : job.location[locale]) as string}
+                      description={(typeof job.description === 'string' ? job.description : job.description[locale]) as string}
+                      requirements={(Array.isArray(job.requirements) && typeof job.requirements[0] === 'string' ? job.requirements : job.requirements?.map((req: any) => typeof req === 'string' ? req : req[locale]).filter(Boolean) || []) as string[]}
                       posted={job.posted}
                       onApply={handleApply}
                     />

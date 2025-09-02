@@ -504,5 +504,93 @@ export const careerData: CareerData = {
       posted: "2025-01-12",
       featured: false,
     },
+    {
+      id: "pixel-designer",
+      title: {
+        id: "Pixel Designer",
+        en: "Pixel Designer",
+      },
+      department: {
+        id: "Design",
+        en: "Design",
+      },
+      location: {
+        id: "Remote",
+        en: "Remote",
+      },
+      type: "internship",
+      level: "intern",
+      function: "design",
+      description: {
+        id: "Bergabunglah dengan tim kreatif kami untuk menciptakan pixel art yang menawan untuk properti game, karakter, dan aset visual lainnya.",
+        en: "Join our creative team to create captivating pixel art for game properties, characters, and other visual assets.",
+      },
+      responsibilities: [
+        {
+          id: "Membuat pixel art untuk karakter game dan NPC",
+          en: "Create pixel art for game characters and NPCs",
+        },
+        {
+          id: "Mendesain properti dan environment assets dalam style pixel art",
+          en: "Design properties and environment assets in pixel art style",
+        },
+        {
+          id: "Membuat animasi sprite untuk karakter dan objek",
+          en: "Create sprite animations for characters and objects",
+        },
+        {
+          id: "Berkolaborasi dengan game developers dan art directors",
+          en: "Collaborate with game developers and art directors",
+        },
+        {
+          id: "Maintain konsistensi visual style across semua assets",
+          en: "Maintain visual style consistency across all assets",
+        },
+      ],
+      requirements: [
+        {
+          id: "Proficient dengan software seperti Aseprite, Photoshop, atau tools pixel art lainnya",
+          en: "Proficient with software like Aseprite, Photoshop, or other pixel art tools",
+        },
+        {
+          id: "Strong understanding of color theory dan composition",
+          en: "Strong understanding of color theory and composition",
+        },
+        {
+          id: "Portfolio yang menunjukkan kemampuan pixel art dan sprite animation",
+          en: "Portfolio demonstrating pixel art and sprite animation skills",
+        },
+        {
+          id: "Kemampuan bekerja dalam timeline yang ketat",
+          en: "Ability to work within tight timelines",
+        },
+      ],
+      niceToHave: [
+        {
+          id: "Pengalaman dengan game engines seperti Unity atau Godot",
+          en: "Experience with game engines like Unity or Godot",
+        },
+        {
+          id: "Knowledge tentang technical constraints dalam game development",
+          en: "Knowledge of technical constraints in game development",
+        },
+        {
+          id: "Pengalaman dengan retro gaming dan classic pixel art styles",
+          en: "Experience with retro gaming and classic pixel art styles",
+        },
+        {
+          id: "Basic understanding of UI/UX design principles",
+          en: "Basic understanding of UI/UX design principles",
+        },
+      ],
+      salary: {
+        min: 6000000,
+        max: 12000000,
+        currency: "IDR",
+        period: "monthly",
+      },
+      posted: "2025-01-15",
+      featured: true,
+    },
   ],
 };
