@@ -83,120 +83,7 @@ const benefits = [
 ]
 
 // Use career data from career.ts and combine with additional internships
-const additionalInternships = [
-  {
-    id: "flutter-developer-intern",
-    title: { id: "Flutter Developer - Internship", en: "Flutter Developer - Internship" },
-    level: "intern",
-    type: "internship",
-    function: "engineering",
-    location: "WFH",
-    description: {
-      id: "Bergabunglah dengan tim mobile development kami untuk mengembangkan aplikasi Flutter yang menakjubkan",
-      en: "Join our mobile development team to build amazing Flutter applications",
-    },
-    requirements: ["Flutter", "Dart", "Firebase", "Git", "RESTful API"],
-    posted: "2025-01-15",
-  },
-  {
-    id: "frontend-developer-intern",
-    title: { id: "Front End Developer (NextJS) - Internship", en: "Front End Developer (NextJS) - Internship" },
-    level: "intern",
-    type: "internship",
-    function: "engineering",
-    location: "WFH",
-    description: {
-      id: "Kembangkan antarmuka web modern menggunakan Next.js dan teknologi front-end terkini",
-      en: "Develop modern web interfaces using Next.js and cutting-edge front-end technologies",
-    },
-    requirements: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Git"],
-    posted: "2025-01-15",
-  },
-  {
-    id: "backend-developer-intern",
-    title: { id: "Back End Developer (NestJS) - Internship", en: "Back End Developer (NestJS) - Internship" },
-    level: "intern",
-    type: "internship",
-    function: "engineering",
-    location: "WFH",
-    description: {
-      id: "Bangun API yang robust dan scalable menggunakan NestJS dan teknologi backend modern",
-      en: "Build robust and scalable APIs using NestJS and modern backend technologies",
-    },
-    requirements: ["NestJS", "Node.js", "TypeScript", "PostgreSQL", "Docker"],
-    posted: "2025-01-15",
-  },
-  {
-    id: "uiux-designer-intern",
-    title: { id: "UI/UX Designer - Internship", en: "UI/UX Designer - Internship" },
-    level: "intern",
-    type: "internship",
-    function: "design",
-    location: "WFH",
-    description: {
-      id: "Ciptakan desain yang user-friendly dan estetis untuk produk digital kami",
-      en: "Create user-friendly and aesthetic designs for our digital products",
-    },
-    requirements: ["Figma", "Adobe Creative Suite", "Prototyping", "Design Thinking", "User Research"],
-    posted: "2025-01-15",
-  },
-  {
-    id: "content-creator-intern",
-    title: { id: "Content Creator - Internship", en: "Content Creator - Internship" },
-    level: "intern",
-    type: "internship",
-    function: "content",
-    location: "WFH",
-    description: {
-      id: "Buat konten menarik untuk media sosial dan platform digital perusahaan",
-      en: "Create engaging content for company's social media and digital platforms",
-    },
-    requirements: ["Social Media Management", "Content Writing", "Adobe Creative Suite", "Video Editing", "SEO"],
-    posted: "2025-01-15",
-  },
-  // Regular Positions
-  {
-    id: "ui-ux-designer",
-    title: { id: "UI/UX Designer", en: "UI/UX Designer" },
-    level: "mid",
-    type: "full-time",
-    function: "design",
-    location: "WFH",
-    description: {
-      id: "Desain pengalaman pengguna yang luar biasa untuk produk digital kami",
-      en: "Design exceptional user experiences for our digital products",
-    },
-    requirements: ["Figma", "Adobe Creative Suite", "Prototyping", "User Research"],
-    posted: "2025-01-12",
-  },
-  {
-    id: "product-manager",
-    title: { id: "Product Manager", en: "Product Manager" },
-    level: "senior",
-    type: "full-time",
-    function: "product",
-    location: "WFH",
-    description: {
-      id: "Memimpin pengembangan produk dari konsep hingga peluncuran",
-      en: "Lead product development from concept to launch",
-    },
-    requirements: ["Product Strategy", "Agile", "Analytics", "Stakeholder Management"],
-    posted: "2025-01-08",
-  },
-  {
-    id: "devops-engineer",
-    title: { id: "DevOps Engineer", en: "DevOps Engineer" },
-    level: "mid",
-    type: "full-time",
-    function: "engineering",
-    location: "WFH",
-    description: {
-      id: "Kelola infrastruktur cloud dan pipeline CI/CD",
-      en: "Manage cloud infrastructure and CI/CD pipelines",
-    },
-    requirements: ["AWS", "Docker", "Kubernetes", "Terraform"],
-    posted: "2025-01-05",
-  },
+const additionalInternships: never[] = [
 ]
 
 export default function CareerPage() {
@@ -223,7 +110,7 @@ export default function CareerPage() {
 
   // Combine career data with additional internships
   const allJobs = [...careerData.positions, ...additionalInternships]
-  
+
   const filteredJobs = allJobs.filter((job: any) => {
     // Hide full-time positions by default unless specifically selected
     if (job.type === "full-time" && selectedType === "all" && selectedLevel !== "all") {
